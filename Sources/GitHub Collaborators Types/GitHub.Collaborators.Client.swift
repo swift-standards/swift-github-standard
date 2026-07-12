@@ -12,31 +12,31 @@ extension GitHub.Collaborators {
     public struct Client: Sendable {
         // https://docs.github.com/en/rest/collaborators/collaborators#list-repository-collaborators
         public var list:
-            @Sendable (_ owner: String, _ repo: String, _ request: List.Request?) async throws(Witness.Unimplemented.Error) ->
+            @Sendable (_ owner: String, _ repo: String, _ request: List.Request?) async throws(any Swift.Error) ->
                 List.Response
 
         // https://docs.github.com/en/rest/collaborators/collaborators#check-if-a-user-is-a-repository-collaborator
         public var check:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(Witness.Unimplemented.Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
         public var add:
             @Sendable (_ owner: String, _ repo: String, _ username: String, _ request: Add.Request?)
-                async throws(Witness.Unimplemented.Error) -> Add.Response
+                async throws(any Swift.Error) -> Add.Response
 
         // https://docs.github.com/en/rest/collaborators/collaborators#remove-a-repository-collaborator
         public var remove:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(Witness.Unimplemented.Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#get-repository-permissions-for-a-user
         public var getPermission:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(Witness.Unimplemented.Error) ->
+            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift.Error) ->
                 GetPermission.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#list-repository-invitations
         public var listInvitations:
             @Sendable (_ owner: String, _ repo: String, _ request: Invitations.List.Request?)
-                async throws(Witness.Unimplemented.Error)
+                async throws(any Swift.Error)
                 -> Invitations.List.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#update-a-repository-invitation
@@ -44,11 +44,11 @@ extension GitHub.Collaborators {
             @Sendable (
                 _ owner: String, _ repo: String, _ invitationId: Int,
                 _ request: Invitations.Update.Request
-            ) async throws(Witness.Unimplemented.Error) -> Invitations.Update.Response
+            ) async throws(any Swift.Error) -> Invitations.Update.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#delete-a-repository-invitation
         public var deleteInvitation:
-            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int) async throws(Witness.Unimplemented.Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int) async throws(any Swift.Error) -> Void
     }
 }
 
