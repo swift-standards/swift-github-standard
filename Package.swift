@@ -17,8 +17,24 @@ let package = Package(
             targets: ["GitHub Standard"]
         )
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/swift-ietf/swift-rfc-3339.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-ietf/swift-rfc-3986.git",
+            branch: "main"
+        ),
+    ],
     targets: [
-        .target(name: "GitHub Standard"),
+        .target(
+            name: "GitHub Standard",
+            dependencies: [
+                .product(name: "RFC 3339", package: "swift-rfc-3339"),
+                .product(name: "RFC 3986", package: "swift-rfc-3986"),
+            ]
+        ),
         .testTarget(
             name: "GitHub Standard Tests",
             dependencies: ["GitHub Standard"]

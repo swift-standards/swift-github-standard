@@ -1,4 +1,4 @@
-extension GitHub.User.Repositories {
+extension GitHub.Repository.Get {
     public struct Operation: Equatable, Hashable, Sendable {
         public let request: Request
 
