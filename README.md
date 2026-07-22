@@ -14,7 +14,7 @@ application persistence to higher layers.
 
 | Product | Module | Purpose |
 | --- | --- | --- |
-| GitHub Standard | `GitHub_Standard` | GitHub request, response, identifier, pagination, repository, traffic, and stargazer contracts |
+| GitHub Standard | `GitHub_Standard` | GitHub request, response, identifier, OAuth, user, repository, traffic, and stargazer contracts |
 
 ## Installation
 
@@ -70,6 +70,11 @@ Repository metadata is returned by both
 `GitHub.Repository.Get` and `GitHub.User.Repositories`. The latter models the
 authenticated-user repository collection, including GitHub's visibility, type,
 sort, direction, and timestamp filters.
+
+GitHub's OAuth authorization and token exchange contracts live under
+`GitHub.OAuth`. The authenticated profile and email endpoints retain the
+provider's Users API vocabulary under `GitHub.User.Authenticated`; they are
+consumed by OAuth flows but are not token endpoints.
 
 ## Architecture
 
