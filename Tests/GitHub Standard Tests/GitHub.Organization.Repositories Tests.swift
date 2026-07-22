@@ -35,6 +35,8 @@ extension GitHub.Organization.Repositories {
                 id: .init(rawValue: 42),
                 name: .init(rawValue: "swift"),
                 archived: false,
+                disabled: false,
+                fork: false,
                 visibility: .public
             )
             let response = GitHub.Organization.Repositories.Response(
