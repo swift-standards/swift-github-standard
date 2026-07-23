@@ -12,6 +12,9 @@ extension GitHub.Owner {
         public let type: String
         public let siteAdmin: Bool
 
+        // REASON: GitHub wire boolean; L2 spec-mirroring — the Bool parameters
+        //   below are 1:1 transliterations of GitHub REST wire fields, so the
+        //   enum rewrite [API-IMPL-003] prescribes would falsify the contract.
         public init(
             id: ID,
             login: Login,
@@ -21,7 +24,7 @@ extension GitHub.Owner {
             url: RFC_3986.URI,
             htmlURL: RFC_3986.URI,
             type: String,
-            siteAdmin: Bool
+            siteAdmin: Bool  // swift-linter:disable:line bool public parameter
         ) {
             self.id = id
             self.login = login

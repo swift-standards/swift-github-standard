@@ -9,15 +9,22 @@ extension GitHub.User.Authenticated {
     @Suite("GitHub.User.Authenticated.Unit")
     struct Unit {
         @Test("Profile preserves typed provider values and nullable email")
-        func profile() throws {
+        func profile() throws(RFC_3339.DateTime.Error) {
             let createdAt = try RFC_3339.DateTime("2020-01-01T00:00:00Z")
             let updatedAt = try RFC_3339.DateTime("2026-07-22T00:00:00Z")
+            let avatarURL: RFC_3986.URI
+            do throws(RFC_3986.Error) {
+                avatarURL = try RFC_3986.URI("https://avatars.githubusercontent.com/u/1")
+            } catch {
+                Issue.record("invalid RFC 3986 fixture: \(error)")
+                return
+            }
             let user = Profile(
                 id: .init(rawValue: 1),
                 login: .init(rawValue: "octocat"),
                 name: "The Octocat",
                 email: nil,
-                avatarURL: try RFC_3986.URI("https://avatars.githubusercontent.com/u/1"),
+                avatarURL: avatarURL,
                 bio: nil,
                 company: "@github",
                 blog: "https://github.blog",
@@ -37,7 +44,7 @@ extension GitHub.User.Authenticated {
         }
 
         @Test("Email list requires a typed non-null email address")
-        func emails() throws {
+        func emails() throws(EmailAddress.Error) {
             let email = try EmailAddress("octocat@github.com")
             let item = Emails.List.Email(
                 email: email,

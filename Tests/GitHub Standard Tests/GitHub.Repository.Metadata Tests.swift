@@ -8,7 +8,7 @@ extension GitHub.Repository.Metadata {
     @Suite("GitHub.Repository.Metadata.Unit")
     struct Unit {
         @Test("Metadata retains provider vocabulary without Foundation conversion")
-        func values() throws {
+        func values() throws(RFC_3986.Error) {
             let owner = GitHub.Owner.Summary(
                 id: .init(rawValue: 1),
                 login: .init(rawValue: "swiftlang"),
@@ -20,7 +20,13 @@ extension GitHub.Repository.Metadata {
                 type: "Organization",
                 siteAdmin: false
             )
-            let createdAt = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
+            let createdAt: RFC_3339.DateTime
+            do throws(RFC_3339.DateTime.Error) {
+                createdAt = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
+            } catch {
+                Issue.record("invalid RFC 3339 fixture: \(error)")
+                return
+            }
             let metadata = GitHub.Repository.Metadata(
                 id: .init(rawValue: 2),
                 nodeID: "R_kgDO",
@@ -57,7 +63,7 @@ extension GitHub.Repository.Metadata {
                 pushedAt: nil
             )
 
-            #expect(metadata.owner.login.rawValue == "swiftlang")
+            #expect(metadata.owner.login == .init(rawValue: "swiftlang"))
             #expect(metadata.createdAt == createdAt)
             #expect(metadata.size == UInt64(5))
             #expect(metadata.visibility == .public)

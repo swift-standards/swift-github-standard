@@ -37,6 +37,9 @@ extension GitHub.Repository {
         public let updatedAt: RFC_3339.DateTime
         public let pushedAt: RFC_3339.DateTime?
 
+        // REASON: GitHub wire boolean; L2 spec-mirroring — the Bool parameters
+        //   below are 1:1 transliterations of GitHub REST wire fields, so the
+        //   enum rewrite [API-IMPL-003] prescribes would falsify the contract.
         public init(
             id: ID,
             nodeID: String,
@@ -47,17 +50,17 @@ extension GitHub.Repository {
             url: RFC_3986.URI,
             homepage: RFC_3986.URI?,
             description: String?,
-            isPrivate: Bool,
-            isFork: Bool,
-            isArchived: Bool,
-            isDisabled: Bool,
-            isTemplate: Bool,
-            hasIssues: Bool,
-            hasProjects: Bool,
-            hasDownloads: Bool,
-            hasWiki: Bool,
-            hasPages: Bool,
-            allowForking: Bool,
+            isPrivate: Bool,  // swift-linter:disable:line bool public parameter
+            isFork: Bool,  // swift-linter:disable:line bool public parameter
+            isArchived: Bool,  // swift-linter:disable:line bool public parameter
+            isDisabled: Bool,  // swift-linter:disable:line bool public parameter
+            isTemplate: Bool,  // swift-linter:disable:line bool public parameter
+            hasIssues: Bool,  // swift-linter:disable:line bool public parameter
+            hasProjects: Bool,  // swift-linter:disable:line bool public parameter
+            hasDownloads: Bool,  // swift-linter:disable:line bool public parameter
+            hasWiki: Bool,  // swift-linter:disable:line bool public parameter
+            hasPages: Bool,  // swift-linter:disable:line bool public parameter
+            allowForking: Bool,  // swift-linter:disable:line bool public parameter
             language: String?,
             visibility: Visibility,
             defaultBranch: String,
