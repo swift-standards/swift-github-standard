@@ -1,5 +1,6 @@
 # swift-github-standard
 
+![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 [![CI](https://github.com/swift-standards/swift-github-standard/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-standards/swift-github-standard/actions/workflows/ci.yml)
 
 Foundation-free Swift value types for GitHub REST API contracts.
@@ -85,15 +86,6 @@ binding lives in
 
 No deprecated `GitHub Types`, `GitHub Traffic`, `GitHub Stargazers`, or
 `GitHub Repositories` compatibility products are provided.
-
-## Development
-
-Build and test through the Swift Institute build coordinator:
-
-```bash
-/Users/coen/Developer/swift-institute/Scripts/swift-build package build
-/Users/coen/Developer/swift-institute/Scripts/swift-build package test
-```
 
 ## License
 
