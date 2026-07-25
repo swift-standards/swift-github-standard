@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+description: "Foundation-free value types for GitHub REST API contracts in Swift."
+topics:
+  - standards
+  - github
+  - rest-api
+homepage: "https://swift-institute.org"
+readme:
+  family: E
