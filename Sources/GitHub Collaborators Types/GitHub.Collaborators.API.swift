@@ -131,7 +131,9 @@ extension GitHub.Collaborators.API {
                 // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
                 URLRouting.Route(
                     .convert(
-                        apply: { (owner: $0.0.0.0, repo: $0.0.0.1, username: $0.0.1, request: $0.1) },
+                        apply: {
+                            (owner: $0.0.0.0, repo: $0.0.0.1, username: $0.0.1, request: $0.1)
+                        },
                         unapply: { ((($0.owner, $0.repo), $0.username), $0.request) }
                     )
                     .map(.case(GitHub.Collaborators.API.cases.add))
@@ -215,7 +217,9 @@ extension GitHub.Collaborators.API {
                 // https://docs.github.com/en/rest/collaborators/invitations#update-a-repository-invitation
                 URLRouting.Route(
                     .convert(
-                        apply: { (owner: $0.0.0.0, repo: $0.0.0.1, invitationId: $0.0.1, request: $0.1) },
+                        apply: {
+                            (owner: $0.0.0.0, repo: $0.0.0.1, invitationId: $0.0.1, request: $0.1)
+                        },
                         unapply: { ((($0.owner, $0.repo), $0.invitationId), $0.request) }
                     )
                     .map(.case(GitHub.Collaborators.API.cases.updateInvitation))

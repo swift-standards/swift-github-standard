@@ -431,10 +431,10 @@ struct ReadmeVerificationTests {
                 #expect(request.name == "new-repo")
                 return mockRepo
             },
-            update: { owner, repo, request in
+            update: { _, _, _ in
                 return mockRepo
             },
-            delete: { owner, repo in
+            delete: { _, _ in
                 return GitHub.Repositories.Delete.Response(
                     message: "Repository deleted",
                     documentationUrl: nil
