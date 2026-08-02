@@ -6,13 +6,13 @@ extension GitHub.Issue {
     @Suite("GitHub.Issue.Unit")
     struct Unit {
         @Test("Issue numbers are positive")
-        func number() {
+        func `Issue numbers are positive`() {
             #expect(Number(rawValue: 0) == nil)
             #expect(Number(rawValue: 14)?.rawValue == 14)
         }
 
         @Test("Issue keys retain their repository-scoped identity")
-        func key() throws {
+        func `Issue keys retain their repository-scoped identity`() throws {
             let number = try #require(Number(rawValue: 14))
             let key = Key(
                 owner: .init("swift-standards"),
@@ -26,7 +26,7 @@ extension GitHub.Issue {
         }
 
         @Test("Issue states retain known GitHub wire values")
-        func state() {
+        func `Issue states retain known GitHub wire values`() {
             #expect(State.open.rawValue == "open")
             #expect(State.closed.rawValue == "closed")
             #expect(State.Reason.completed.rawValue == "completed")
@@ -35,13 +35,13 @@ extension GitHub.Issue {
         }
 
         @Test("Unknown lifecycle wire values are preserved")
-        func unknown() {
+        func `Unknown lifecycle wire values are preserved`() {
             #expect(State(rawValue: "archived").rawValue == "archived")
             #expect(State.Reason(rawValue: "migrated").rawValue == "migrated")
         }
 
         @Test("Known reason wire strings decode and re-encode unchanged")
-        func knownReason() throws {
+        func `Known reason wire strings decode and re-encode unchanged`() throws {
             for wireValue in ["completed", "not_planned", "reopened"] {
                 let decoded = try State.Reason(from: Wire.Decoder(wireValue))
                 let encoded = try Wire.encode(decoded)
@@ -52,7 +52,7 @@ extension GitHub.Issue {
         }
 
         @Test("Unknown reason wire strings decode and re-encode unchanged")
-        func unknownReason() throws {
+        func `Unknown reason wire strings decode and re-encode unchanged`() throws {
             let decoded = try State.Reason(from: Wire.Decoder("migrated"))
             let encoded = try Wire.encode(decoded)
 
