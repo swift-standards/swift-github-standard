@@ -62,7 +62,7 @@ extension GitHub.Collaborators {
         }
 
         @Test("Invitation requests retain pagination and update values")
-        func invitationRequests() {
+        func invitationRequests() throws {
             let list = Invitations.List.Request(
                 owner: .init("swiftlang"),
                 repository: .init("swift"),
@@ -73,13 +73,19 @@ extension GitHub.Collaborators {
                 owner: list.owner,
                 repository: list.repository,
                 invitationID: .init(1),
-                permission: "write"
+                permissions: "write"
             )
 
             #expect(list.page == .first)
             #expect(list.size == .maximum)
             #expect(update.invitationID == .init(1))
-            #expect(update.permission == "write")
+            #expect(update.permissions == "write")
+
+            let encoder = Wire.Encoder()
+            try update.encode(to: encoder)
+
+            #expect(encoder.keys.contains("permissions"))
+            #expect(!encoder.keys.contains("permission"))
         }
 
         private static func user() throws(RFC_3986.Error) -> GitHub.User.Summary {
@@ -114,6 +120,63 @@ extension GitHub.Collaborators {
                 url: user.url,
                 htmlURL: user.htmlURL
             )
+        }
+
+        private enum Wire {
+            final class Encoder: Swift.Encoder {
+                var keys: [String] = []
+                var codingPath: [any CodingKey] { [] }
+                var userInfo: [CodingUserInfoKey: Any] { [:] }
+
+                func container<Key>(keyedBy: Key.Type) -> KeyedEncodingContainer<Key> {
+                    KeyedEncodingContainer(Container(encoder: self))
+                }
+
+                func unkeyedContainer() -> UnkeyedEncodingContainer { fatalError("unsupported") }
+
+                func singleValueContainer() -> any SingleValueEncodingContainer {
+                    fatalError("unsupported")
+                }
+            }
+
+            struct Container<Key: CodingKey>: KeyedEncodingContainerProtocol {
+                let encoder: Encoder
+                var codingPath: [any CodingKey] { [] }
+
+                mutating func encodeNil(forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Bool, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: String, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Double, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Float, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Int, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Int8, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Int16, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Int32, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: Int64, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: UInt, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: UInt8, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: UInt16, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: UInt32, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encode(_ value: UInt64, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+
+                mutating func encode<Value: Encodable>(_ value: Value, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+
+                mutating func nestedContainer<NestedKey>(
+                    keyedBy type: NestedKey.Type,
+                    forKey key: Key
+                ) -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
+                    fatalError("unsupported")
+                }
+
+                mutating func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {
+                    fatalError("unsupported")
+                }
+
+                mutating func superEncoder() -> any Swift.Encoder { fatalError("unsupported") }
+                mutating func superEncoder(forKey key: Key) -> any Swift.Encoder { fatalError("unsupported") }
+            }
         }
     }
 }
