@@ -18,3 +18,10 @@ extension GitHub.Collaborators.Invitations.Update {
         }
     }
 }
+
+extension GitHub.Collaborators.Invitations.Update.Request {
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(permissions, forKey: .permissions)
+    }
+}

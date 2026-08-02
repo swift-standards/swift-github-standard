@@ -61,7 +61,7 @@ extension GitHub.Collaborators {
             #expect(invitations.invitations.first?.permission == "write")
         }
 
-        @Test("Invitation requests retain pagination and update values")
+        @Test("Invitation update request encodes only its body field")
         func invitationRequests() throws {
             let list = Invitations.List.Request(
                 owner: .init("swiftlang"),
@@ -84,8 +84,10 @@ extension GitHub.Collaborators {
             let encoder = Wire.Encoder()
             try update.encode(to: encoder)
 
-            #expect(encoder.keys.contains("permissions"))
-            #expect(!encoder.keys.contains("permission"))
+            #expect(encoder.keys == ["permissions"])
+            #expect(!encoder.keys.contains("owner"))
+            #expect(!encoder.keys.contains("repository"))
+            #expect(!encoder.keys.contains("invitationID"))
         }
 
         private static func user() throws(RFC_3986.Error) -> GitHub.User.Summary {
