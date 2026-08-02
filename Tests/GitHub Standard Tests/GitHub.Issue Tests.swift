@@ -5,13 +5,13 @@ import Testing
 extension GitHub.Issue {
     @Suite("GitHub.Issue.Unit")
     struct Unit {
-        @Test("Issue numbers are positive")
+        @Test
         func `Issue numbers are positive`() {
             #expect(Number(rawValue: 0) == nil)
             #expect(Number(rawValue: 14)?.rawValue == 14)
         }
 
-        @Test("Issue keys retain their repository-scoped identity")
+        @Test
         func `Issue keys retain their repository-scoped identity`() throws {
             let number = try #require(Number(rawValue: 14))
             let key = Key(
@@ -25,7 +25,7 @@ extension GitHub.Issue {
             #expect(key.number == number)
         }
 
-        @Test("Issue states retain known GitHub wire values")
+        @Test
         func `Issue states retain known GitHub wire values`() {
             #expect(State.open.rawValue == "open")
             #expect(State.closed.rawValue == "closed")
@@ -34,13 +34,13 @@ extension GitHub.Issue {
             #expect(State.Reason.reopened.rawValue == "reopened")
         }
 
-        @Test("Unknown lifecycle wire values are preserved")
+        @Test
         func `Unknown lifecycle wire values are preserved`() {
             #expect(State(rawValue: "archived").rawValue == "archived")
             #expect(State.Reason(rawValue: "migrated").rawValue == "migrated")
         }
 
-        @Test("Known reason wire strings decode and re-encode unchanged")
+        @Test
         func `Known reason wire strings decode and re-encode unchanged`() throws {
             for wireValue in ["completed", "not_planned", "reopened"] {
                 let decoded = try State.Reason(from: Wire.Decoder(wireValue))
@@ -51,7 +51,7 @@ extension GitHub.Issue {
             }
         }
 
-        @Test("Unknown reason wire strings decode and re-encode unchanged")
+        @Test
         func `Unknown reason wire strings decode and re-encode unchanged`() throws {
             let decoded = try State.Reason(from: Wire.Decoder("migrated"))
             let encoded = try Wire.encode(decoded)
