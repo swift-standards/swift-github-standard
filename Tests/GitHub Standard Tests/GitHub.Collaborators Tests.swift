@@ -42,7 +42,13 @@ extension GitHub.Collaborators {
             let user = try Self.user()
             let collaborator = Collaborator(
                 user: user,
-                permissions: .init(pull: true, triage: true, push: true, maintain: false, admin: false),
+                permissions: .init(
+                    pull: true,
+                    triage: true,
+                    push: true,
+                    maintain: false,
+                    admin: false
+                ),
                 roleName: "write"
             )
             let invitation: GitHub.Repository.Invitation
@@ -111,8 +117,12 @@ extension GitHub.Collaborators {
                 id: .init(1),
                 nodeID: "MDEwOlJlcG9zaXRvcnkxMjk2MjY5",
                 repository: .init(
-                    id: .init(2), name: .init("swift"), archived: false, disabled: false,
-                    fork: false, visibility: .public
+                    id: .init(2),
+                    name: .init("swift"),
+                    archived: false,
+                    disabled: false,
+                    fork: false,
+                    visibility: .public
                 ),
                 invitee: user,
                 inviter: user,
@@ -145,21 +155,51 @@ extension GitHub.Collaborators {
                 let encoder: Encoder
                 var codingPath: [any CodingKey] { [] }
 
-                mutating func encodeNil(forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Bool, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: String, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Double, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Float, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Int, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Int8, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Int16, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Int32, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: Int64, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: UInt, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: UInt8, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: UInt16, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: UInt32, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
-                mutating func encode(_ value: UInt64, forKey key: Key) throws { encoder.keys.append(key.stringValue) }
+                mutating func encodeNil(forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Bool, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: String, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Double, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Float, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Int, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Int8, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Int16, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Int32, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: Int64, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: UInt, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: UInt8, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: UInt16, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: UInt32, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
+                mutating func encode(_ value: UInt64, forKey key: Key) throws {
+                    encoder.keys.append(key.stringValue)
+                }
 
                 mutating func encode<Value: Encodable>(_ value: Value, forKey key: Key) throws {
                     encoder.keys.append(key.stringValue)
@@ -177,7 +217,9 @@ extension GitHub.Collaborators {
                 }
 
                 mutating func superEncoder() -> any Swift.Encoder { fatalError("unsupported") }
-                mutating func superEncoder(forKey key: Key) -> any Swift.Encoder { fatalError("unsupported") }
+                mutating func superEncoder(forKey key: Key) -> any Swift.Encoder {
+                    fatalError("unsupported")
+                }
             }
         }
     }
