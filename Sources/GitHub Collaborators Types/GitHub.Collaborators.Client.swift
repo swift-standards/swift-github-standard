@@ -34,9 +34,8 @@ extension GitHub.Collaborators {
 
         // https://docs.github.com/en/rest/collaborators/collaborators#check-if-a-user-is-a-repository-collaborator
         public var check:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(
-                Client.Error
-            ) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
         public var add:
@@ -45,15 +44,13 @@ extension GitHub.Collaborators {
 
         // https://docs.github.com/en/rest/collaborators/collaborators#remove-a-repository-collaborator
         public var remove:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(
-                Client.Error
-            ) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#get-repository-permissions-for-a-user
         public var getPermission:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(
-                Client.Error
-            ) ->
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) ->
                 GetPermission.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#list-repository-invitations
@@ -71,16 +68,19 @@ extension GitHub.Collaborators {
 
         // https://docs.github.com/en/rest/collaborators/invitations#delete-a-repository-invitation
         public var deleteInvitation:
-            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int) async throws(
-                Client.Error
-            ) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int)
+                async throws(Client.Error) -> Void
     }
 }
 
 // MARK: - Convenience Methods
 
 extension GitHub.Collaborators.Client {
-    public func list(owner: String, repo: String) async throws -> GitHub.Collaborators.List.Response
+    public func list(
+        owner: String,
+        repo: String
+    ) async throws(Client.Error)
+        -> GitHub.Collaborators.List.Response
     {
         try await self.list(owner: owner, repo: repo, request: nil)
     }
@@ -89,7 +89,7 @@ extension GitHub.Collaborators.Client {
         owner: String,
         repo: String,
         username: String
-    ) async throws -> GitHub.Collaborators.Add.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Add.Response {
         try await self.add(owner: owner, repo: repo, username: username, request: nil)
     }
 
@@ -98,7 +98,7 @@ extension GitHub.Collaborators.Client {
         repo: String,
         username: String,
         permission: GitHub.Collaborators.Permission
-    ) async throws -> GitHub.Collaborators.Add.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Add.Response {
         try await self.add(
             owner: owner,
             repo: repo,
@@ -110,7 +110,7 @@ extension GitHub.Collaborators.Client {
     public func listInvitations(
         owner: String,
         repo: String
-    ) async throws -> GitHub.Collaborators.Invitations.List.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Invitations.List.Response {
         try await self.listInvitations(owner: owner, repo: repo, request: nil)
     }
 }

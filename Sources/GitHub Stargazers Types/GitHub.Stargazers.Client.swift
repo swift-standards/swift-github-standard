@@ -29,14 +29,19 @@ extension GitHub.Stargazers {
 }
 
 extension GitHub.Stargazers.Client {
-    public func list(owner: String, repo: String) async throws -> GitHub.Stargazers.List.Response {
+    public func list(
+        owner: String,
+        repo: String
+    ) async throws(Client.Error)
+        -> GitHub.Stargazers.List.Response
+    {
         try await self.list(owner, repo, nil)
     }
 
     public func listAll(
         owner: String,
         repo: String
-    ) async throws -> [GitHub.Stargazers.List.Stargazer] {
+    ) async throws(Client.Error) -> [GitHub.Stargazers.List.Stargazer] {
         var allStargazers: [GitHub.Stargazers.List.Stargazer] = []
         var page = 1
         let perPage = 100  // GitHub's max per page

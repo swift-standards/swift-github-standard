@@ -50,7 +50,7 @@ extension GitHub.Repositories {
 }
 
 extension GitHub.Repositories.Client {
-    public func list() async throws -> GitHub.Repositories.List.Response {
+    public func list() async throws(Client.Error) -> GitHub.Repositories.List.Response {
         try await self.list(request: nil)
     }
 }
