@@ -7,40 +7,56 @@
 
 import GitHub_Types_Shared
 
+extension GitHub.Collaborators.Client {
+    /// Leaf error for `GitHub.Collaborators.Client` operations. Concrete, per-client, and
+    /// typed per the L3 client-modularization leaf-error doctrine — replaces the prior
+    /// `throws(any Swift.Error)` existential (issue #19).
+    public enum Error: Swift.Error, Sendable, Equatable {
+        case list(reason: String)
+        case check(reason: String)
+        case add(reason: String)
+        case remove(reason: String)
+        case getPermission(reason: String)
+        case listInvitations(reason: String)
+        case updateInvitation(reason: String)
+        case deleteInvitation(reason: String)
+    }
+}
+
 extension GitHub.Collaborators {
     @Witness
     public struct Client: Sendable {
         // https://docs.github.com/en/rest/collaborators/collaborators#list-repository-collaborators
         public var list:
             @Sendable (_ owner: String, _ repo: String, _ request: List.Request?)
-                async throws(any Swift.Error) ->
+                async throws(Client.Error) ->
                 List.Response
 
         // https://docs.github.com/en/rest/collaborators/collaborators#check-if-a-user-is-a-repository-collaborator
         public var check:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift
-                .Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
         public var add:
             @Sendable (_ owner: String, _ repo: String, _ username: String, _ request: Add.Request?)
-                async throws(any Swift.Error) -> Add.Response
+                async throws(Client.Error) -> Add.Response
 
         // https://docs.github.com/en/rest/collaborators/collaborators#remove-a-repository-collaborator
         public var remove:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift
-                .Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) -> Void
 
         // https://docs.github.com/en/rest/collaborators/collaborators#get-repository-permissions-for-a-user
         public var getPermission:
-            @Sendable (_ owner: String, _ repo: String, _ username: String) async throws(any Swift
-                .Error) ->
+            @Sendable (_ owner: String, _ repo: String, _ username: String)
+                async throws(Client.Error) ->
                 GetPermission.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#list-repository-invitations
         public var listInvitations:
             @Sendable (_ owner: String, _ repo: String, _ request: Invitations.List.Request?)
-                async throws(any Swift.Error)
+                async throws(Client.Error)
                 -> Invitations.List.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#update-a-repository-invitation
@@ -48,19 +64,23 @@ extension GitHub.Collaborators {
             @Sendable (
                 _ owner: String, _ repo: String, _ invitationId: Int,
                 _ request: Invitations.Update.Request
-            ) async throws(any Swift.Error) -> Invitations.Update.Response
+            ) async throws(Client.Error) -> Invitations.Update.Response
 
         // https://docs.github.com/en/rest/collaborators/invitations#delete-a-repository-invitation
         public var deleteInvitation:
-            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int) async throws(any Swift
-                .Error) -> Void
+            @Sendable (_ owner: String, _ repo: String, _ invitationId: Int)
+                async throws(Client.Error) -> Void
     }
 }
 
 // MARK: - Convenience Methods
 
 extension GitHub.Collaborators.Client {
-    public func list(owner: String, repo: String) async throws -> GitHub.Collaborators.List.Response
+    public func list(
+        owner: String,
+        repo: String
+    ) async throws(Client.Error)
+        -> GitHub.Collaborators.List.Response
     {
         try await self.list(owner: owner, repo: repo, request: nil)
     }
@@ -69,7 +89,7 @@ extension GitHub.Collaborators.Client {
         owner: String,
         repo: String,
         username: String
-    ) async throws -> GitHub.Collaborators.Add.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Add.Response {
         try await self.add(owner: owner, repo: repo, username: username, request: nil)
     }
 
@@ -78,7 +98,7 @@ extension GitHub.Collaborators.Client {
         repo: String,
         username: String,
         permission: GitHub.Collaborators.Permission
-    ) async throws -> GitHub.Collaborators.Add.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Add.Response {
         try await self.add(
             owner: owner,
             repo: repo,
@@ -90,7 +110,7 @@ extension GitHub.Collaborators.Client {
     public func listInvitations(
         owner: String,
         repo: String
-    ) async throws -> GitHub.Collaborators.Invitations.List.Response {
+    ) async throws(Client.Error) -> GitHub.Collaborators.Invitations.List.Response {
         try await self.listInvitations(owner: owner, repo: repo, request: nil)
     }
 }
