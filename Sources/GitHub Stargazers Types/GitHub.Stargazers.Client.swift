@@ -8,13 +8,22 @@
 import Dependencies
 import GitHub_Types_Shared
 
+extension GitHub.Stargazers.Client {
+    /// Leaf error for `GitHub.Stargazers.Client` operations. Concrete, per-client, and typed
+    /// per the L3 client-modularization leaf-error doctrine — replaces the prior
+    /// `throws(any Swift.Error)` existential (issue #19).
+    public enum Error: Swift.Error, Sendable, Equatable {
+        case list(reason: String)
+    }
+}
+
 extension GitHub.Stargazers {
     @Witness
     public struct Client: Sendable {
         // https://docs.github.com/en/rest/activity/starring#list-stargazers
         public var list:
             @Sendable (_ owner: String, _ repo: String, _ request: List.Request?)
-                async throws(any Swift.Error) ->
+                async throws(Client.Error) ->
                 List.Response
     }
 }
