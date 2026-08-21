@@ -1,17 +1,8 @@
-//
-//  GitHub.Stargazers.Client.swift
-//  swift-github-types
-//
-//  Created by Coen ten Thije Boonkkamp on 30/08/2025.
-//
-
 import Dependencies
 import GitHub_Types_Shared
 
 extension GitHub.Stargazers.Client {
-    /// Leaf error for `GitHub.Stargazers.Client` operations. Concrete, per-client, and typed
-    /// per the L3 client-modularization leaf-error doctrine — replaces the prior
-    /// `throws(any Swift.Error)` existential (issue #19).
+
     public enum Error: Swift.Error, Sendable, Equatable {
         case list(reason: String)
     }
@@ -20,7 +11,7 @@ extension GitHub.Stargazers.Client {
 extension GitHub.Stargazers {
     @Witness
     public struct Client: Sendable {
-        // https://docs.github.com/en/rest/activity/starring#list-stargazers
+
         public var list:
             @Sendable (_ owner: String, _ repo: String, _ request: List.Request?)
                 async throws(Client.Error) ->
@@ -44,7 +35,7 @@ extension GitHub.Stargazers.Client {
     ) async throws(Client.Error) -> [GitHub.Stargazers.List.Stargazer] {
         var allStargazers: [GitHub.Stargazers.List.Stargazer] = []
         var page = 1
-        let perPage = 100  // GitHub's max per page
+        let perPage = 100
 
         while true {
             let request = GitHub.Stargazers.List.Request(perPage: perPage, page: page)
@@ -56,7 +47,6 @@ extension GitHub.Stargazers.Client {
 
             allStargazers.append(contentsOf: response)
 
-            // If we got less than perPage, we've reached the end
             if response.count < perPage {
                 break
             }

@@ -20,18 +20,12 @@ extension GitHub.User.Repositories {
                 since: since
             )
 
-            // swift-linter:disable:next raw value access
-            // REASON: the test's purpose is the newtype's raw wire boundary —
-            //   each filter must retain GitHub's exact wire spelling.
             #expect(request.visibility?.rawValue == "private")
-            // swift-linter:disable:next raw value access
-            // REASON: raw wire boundary — see above.
+
             #expect(request.type?.rawValue == "owner")
-            // swift-linter:disable:next raw value access
-            // REASON: raw wire boundary — see above.
+
             #expect(request.sort?.rawValue == "full_name")
-            // swift-linter:disable:next raw value access
-            // REASON: raw wire boundary — see above.
+
             #expect(request.direction?.rawValue == "desc")
             #expect(Operation(request: request).request == request)
         }

@@ -44,13 +44,9 @@ extension GitHub.Repository.Stargazers {
             )
 
             #expect(Operation(request: request).request == request)
-            // swift-linter:disable:next raw value access
-            // REASON: the test's purpose is the newtype's raw wire boundary —
-            //   `.first` must serialize as page 1 on the GitHub wire.
+
             #expect(request.page?.rawValue == 1)
-            // swift-linter:disable:next raw value access
-            // REASON: the test's purpose is the newtype's raw wire boundary —
-            //   `.maximum` must serialize as per_page 100 on the GitHub wire.
+
             #expect(request.size?.rawValue == 100)
         }
     }

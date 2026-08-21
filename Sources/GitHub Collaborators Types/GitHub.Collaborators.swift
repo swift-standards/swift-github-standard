@@ -1,18 +1,8 @@
-//
-//  GitHub.Collaborators.swift
-//  swift-github-types
-//
-//  Created by Coen ten Thije Boonkkamp on 14/09/2025.
-//
-
 import GitHub_Types_Shared
 
-// https://docs.github.com/en/rest/collaborators/collaborators
 extension GitHub {
     public enum Collaborators: Sendable {}
 }
-
-// MARK: - Permission Level
 
 extension GitHub.Collaborators {
     public enum Permission: String, Codable, Equatable, Sendable, CaseIterable {
@@ -23,8 +13,6 @@ extension GitHub.Collaborators {
         case admin
     }
 }
-
-// MARK: - List
 
 extension GitHub.Collaborators {
     public enum List {}
@@ -66,8 +54,6 @@ extension GitHub.Collaborators.List {
     public typealias Response = [GitHub.Collaborator]
 }
 
-// MARK: - Check
-
 extension GitHub.Collaborators {
     public enum Check {}
 }
@@ -91,8 +77,6 @@ extension GitHub.Collaborators.Check {
         }
     }
 }
-
-// MARK: - Add
 
 extension GitHub.Collaborators {
     public enum Add {}
@@ -158,8 +142,6 @@ extension GitHub.Collaborators.Add {
     }
 }
 
-// MARK: - Remove
-
 extension GitHub.Collaborators {
     public enum Remove {}
 }
@@ -183,8 +165,6 @@ extension GitHub.Collaborators.Remove {
         }
     }
 }
-
-// MARK: - Get Permission
 
 extension GitHub.Collaborators {
     public enum GetPermission {}
@@ -214,13 +194,9 @@ extension GitHub.Collaborators.GetPermission {
     }
 }
 
-// MARK: - Invitations
-
 extension GitHub.Collaborators {
     public enum Invitations {}
 }
-
-// MARK: - List Invitations
 
 extension GitHub.Collaborators.Invitations {
     public enum List {}
@@ -248,8 +224,6 @@ extension GitHub.Collaborators.Invitations.List {
     public typealias Response = [GitHub.RepositoryInvitation]
 }
 
-// MARK: - Update Invitation
-
 extension GitHub.Collaborators.Invitations {
     public enum Update {}
 }
@@ -265,8 +239,6 @@ extension GitHub.Collaborators.Invitations.Update {
 
     public typealias Response = GitHub.RepositoryInvitation
 }
-
-// MARK: - Delete Invitation
 
 extension GitHub.Collaborators.Invitations {
     public enum Delete {}
@@ -291,8 +263,6 @@ extension GitHub.Collaborators.Invitations.Delete {
         }
     }
 }
-
-// MARK: - Supporting Types
 
 extension GitHub {
     public struct Collaborator: Codable, Equatable, Sendable, Identifiable {

@@ -1,11 +1,3 @@
-//
-//  Pagination.swift
-//  swift-github-types
-//
-//  Created by Coen ten Thije Boonkkamp on 22/08/2025.
-//
-
-// https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api
 extension GitHub {
     public struct LinkHeader: Codable, Equatable, Sendable {
         public let first: URL?

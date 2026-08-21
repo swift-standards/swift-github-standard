@@ -11,20 +11,14 @@ import Testing
 @Suite("README Code Examples Validation", .serialized)
 struct ReadmeVerificationTests {
 
-    // MARK: - Import Modules (README lines 36-40)
-
     @Test("Verify module imports compile")
     func moduleImportsExample() async throws {
-        // This test verifies that the import statements in the README are correct
-        // by using types from each module
 
         let _: GitHub.Client.Type = GitHub.Client.self
         let _: GitHub.Traffic.Client.Type = GitHub.Traffic.Client.self
         let _: GitHub.Repositories.Client.Type = GitHub.Repositories.Client.self
         let _: GitHub.Stargazers.Client.Type = GitHub.Stargazers.Client.self
     }
-
-    // MARK: - Using Type-Safe Models (README lines 45-60)
 
     @Test("Traffic analytics response types (README lines 46-48)")
     func trafficAnalyticsResponseExample() async throws {
@@ -118,8 +112,6 @@ struct ReadmeVerificationTests {
         #expect(stargazers[0].user.login == "user1")
     }
 
-    // MARK: - Repositories: List User Repositories (README lines 72-84)
-
     @Test("List user repositories request (README lines 72-84)")
     func listUserRepositoriesExample() async throws {
         let listRequest = GitHub.Repositories.List.Request(
@@ -138,8 +130,6 @@ struct ReadmeVerificationTests {
         #expect(listRequest.perPage == 30)
         #expect(listRequest.page == 1)
     }
-
-    // MARK: - Repositories: Create a Repository (README lines 89-102)
 
     @Test("Create repository request (README lines 89-102)")
     func createRepositoryExample() async throws {
@@ -164,8 +154,6 @@ struct ReadmeVerificationTests {
         #expect(createRequest.licenseTemplate == "apache-2.0")
     }
 
-    // MARK: - Repositories: Update Repository Settings (README lines 117-130)
-
     @Test("Update repository request (README lines 117-130)")
     func updateRepositoryExample() async throws {
         let updateRequest = GitHub.Repositories.Update.Request(
@@ -181,8 +169,6 @@ struct ReadmeVerificationTests {
         #expect(updateRequest.defaultBranch == "main")
     }
 
-    // MARK: - Repositories: Delete a Repository (README lines 135-140)
-
     @Test("Delete repository response type (README lines 135-140)")
     func deleteRepositoryExample() async throws {
         let response = GitHub.Repositories.Delete.Response(
@@ -193,8 +179,6 @@ struct ReadmeVerificationTests {
         #expect(response.message == "Repository deleted")
         #expect(response.documentationUrl == nil)
     }
-
-    // MARK: - Traffic Analytics: Get Repository Views (README lines 149-161)
 
     @Test("Get repository views response (README lines 149-161)")
     func getRepositoryViewsExample() async throws {
@@ -221,8 +205,6 @@ struct ReadmeVerificationTests {
         #expect(viewsResponse.views[0].count == 150)
     }
 
-    // MARK: - Traffic Analytics: Get Clone Statistics (README lines 166-174)
-
     @Test("Get clone statistics response (README lines 166-174)")
     func getClonesExample() async throws {
         let clonesResponse = GitHub.Traffic.Clones.Response(
@@ -241,8 +223,6 @@ struct ReadmeVerificationTests {
         #expect(clonesResponse.uniques == 100)
         #expect(clonesResponse.clones.count == 1)
     }
-
-    // MARK: - Traffic Analytics: Get Top Referral Paths (README lines 179-187)
 
     @Test("Get top referral paths response (README lines 179-187)")
     func getTopPathsExample() async throws {
@@ -268,8 +248,6 @@ struct ReadmeVerificationTests {
         #expect(pathsResponse.paths[0].count == 250)
     }
 
-    // MARK: - Traffic Analytics: Get Top Referral Sources (README lines 192-200)
-
     @Test("Get top referral sources response (README lines 192-200)")
     func getTopReferrersExample() async throws {
         let referrersResponse = GitHub.Traffic.Referrers.Response(
@@ -292,8 +270,6 @@ struct ReadmeVerificationTests {
         #expect(referrersResponse.referrers[0].count == 500)
     }
 
-    // MARK: - Stargazers (README lines 207-221)
-
     @Test("List stargazers request (README lines 207-221)")
     func listStargazersExample() async throws {
         let request = GitHub.Stargazers.List.Request(
@@ -304,7 +280,6 @@ struct ReadmeVerificationTests {
         #expect(request.perPage == 100)
         #expect(request.page == 1)
 
-        // Verify stargazer response structure
         let stargazer = GitHub.Stargazers.List.Stargazer(
             user: GitHub.User(
                 login: "testuser",
@@ -323,37 +298,29 @@ struct ReadmeVerificationTests {
         #expect(stargazer.user.login == "testuser")
     }
 
-    // MARK: - Architecture: Type Organization (README lines 240-257)
-
     @Test("Verify type organization structure (README lines 240-257)")
     func typeOrganizationExample() async throws {
-        // Verify that GitHub namespace contains feature enums (not structs as shown in old README)
+
         let _: GitHub.Repositories.Type = GitHub.Repositories.self
         let _: GitHub.Traffic.Type = GitHub.Traffic.self
 
-        // Verify nested operation namespaces exist
         let _: GitHub.Repositories.List.Type = GitHub.Repositories.List.self
         let _: GitHub.Repositories.Create.Type = GitHub.Repositories.Create.self
         let _: GitHub.Repositories.Update.Type = GitHub.Repositories.Update.self
 
-        // Verify Request/Response types
         let _: GitHub.Repositories.List.Request.Type = GitHub.Repositories.List.Request.self
         let _: GitHub.Repositories.List.Response.Type = GitHub.Repositories.List.Response.self
     }
 
-    // MARK: - Client Structure (README lines 262-285)
-
     @Test("Verify client structure (README lines 262-285)")
     func clientStructureExample() async throws {
-        // Verify feature-specific clients exist
+
         let _: GitHub.Repositories.Client.Type = GitHub.Repositories.Client.self
         let _: GitHub.Traffic.Client.Type = GitHub.Traffic.Client.self
         let _: GitHub.Stargazers.Client.Type = GitHub.Stargazers.Client.self
 
-        // Verify main GitHub client structure
         let _: GitHub.Client.Type = GitHub.Client.self
 
-        // Verify the main client has all sub-clients as properties
         let client = GitHub.Client(
             traffic: GitHub.Traffic.Client.unimplemented(),
             repositories: GitHub.Repositories.Client.unimplemented(),
@@ -366,11 +333,9 @@ struct ReadmeVerificationTests {
         let _: GitHub.Repositories.Client = client.repositories
     }
 
-    // MARK: - Testing: Mock Client (README lines 297-378)
-
     @Test("Mock client testing (README lines 297-378)")
     func mockClientTestingExample() async throws {
-        // Create mock repository data (exactly as shown in README)
+
         let mockRepo = GitHub.Repository(
             id: .init(123),
             nodeId: "MDEwOlJlcG9zaXRvcnkxMjM=",
@@ -416,7 +381,6 @@ struct ReadmeVerificationTests {
             defaultBranch: "main"
         )
 
-        // Create mock client (exactly as shown in README)
         let client = GitHub.Repositories.Client(
             list: { request in
                 #expect(request?.type == .owner)
@@ -442,38 +406,30 @@ struct ReadmeVerificationTests {
             }
         )
 
-        // Test list operation (exactly as shown in README)
         let repos = try await client.list(GitHub.Repositories.List.Request(type: .owner))
         #expect(repos.count == 1)
         #expect(repos[0].name == "test-repo")
 
-        // Test get operation (exactly as shown in README)
         let repo = try await client.get(owner: "user", repo: "test-repo")
         #expect(repo.fullName == "user/test-repo")
     }
-
-    // MARK: - API Routes (README lines 386-398)
 
     @Test("API router URL generation (README lines 386-398)")
     func apiRoutesExample() async throws {
         let router = GitHub.Repositories.API.Router()
 
-        // Test list endpoint URL
         let listAPI = GitHub.Repositories.API.list(request: nil)
         let listURL = router.url(for: listAPI)
         #expect(listURL.path == "/user/repos")
 
-        // Test get endpoint URL
         let getAPI = GitHub.Repositories.API.get(owner: "coenttb", repo: "swift-github-types")
         let getURL = router.url(for: getAPI)
         #expect(getURL.path == "/repos/coenttb/swift-github-types")
     }
 
-    // MARK: - Type Conformance Validation
-
     @Test("Verify all types conform to required protocols")
     func typeConformanceValidation() async throws {
-        // Verify Request types conform to Codable, Equatable, Sendable
+
         let listRequest = GitHub.Repositories.List.Request()
         let _: any Codable = listRequest
         let _: any Equatable = listRequest
@@ -484,7 +440,6 @@ struct ReadmeVerificationTests {
         let _: any Equatable = createRequest
         let _: any Sendable = createRequest
 
-        // Verify Response types conform
         let repository = GitHub.Repository(
             id: .init(1),
             nodeId: "node",
@@ -536,7 +491,7 @@ struct ReadmeVerificationTests {
 
     @Test("Verify client protocols are properly defined")
     func clientProtocolValidation() async throws {
-        // Verify all client types exist and have expected structure
+
         let _: GitHub.Repositories.Client.Type = GitHub.Repositories.Client.self
         let _: GitHub.Traffic.Client.Type = GitHub.Traffic.Client.self
         let _: GitHub.Stargazers.Client.Type = GitHub.Stargazers.Client.self

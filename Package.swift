@@ -45,7 +45,7 @@ let package = Package(
                 ),
                 .product(name: "RFC 3339", package: "swift-rfc-3339"),
                 .product(name: "RFC 3986", package: "swift-rfc-3986"),
-                // GitHub.Repository.ID / GitHub.Owner.ID are Tagged<_, UInt64>.
+
                 .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
             ]
         ),

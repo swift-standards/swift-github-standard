@@ -1,22 +1,13 @@
-//
-//  GitHub.Collaborators.API.swift
-//  swift-github-types
-//
-//  Created by Coen ten Thije Boonkkamp on 14/09/2025.
-//
-
 import GitHub_Types_Shared
 
 extension GitHub.Collaborators {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.github.com/en/rest/collaborators/collaborators#list-repository-collaborators
+
         case list(owner: String, repo: String, request: GitHub.Collaborators.List.Request? = nil)
 
-        // https://docs.github.com/en/rest/collaborators/collaborators#check-if-a-user-is-a-repository-collaborator
         case check(owner: String, repo: String, username: String)
 
-        // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
         case add(
             owner: String,
             repo: String,
@@ -24,20 +15,16 @@ extension GitHub.Collaborators {
             request: GitHub.Collaborators.Add.Request? = nil
         )
 
-        // https://docs.github.com/en/rest/collaborators/collaborators#remove-a-repository-collaborator
         case remove(owner: String, repo: String, username: String)
 
-        // https://docs.github.com/en/rest/collaborators/collaborators#get-repository-permissions-for-a-user
         case getPermission(owner: String, repo: String, username: String)
 
-        // https://docs.github.com/en/rest/collaborators/invitations#list-repository-invitations
         case listInvitations(
             owner: String,
             repo: String,
             request: GitHub.Collaborators.Invitations.List.Request? = nil
         )
 
-        // https://docs.github.com/en/rest/collaborators/invitations#update-a-repository-invitation
         case updateInvitation(
             owner: String,
             repo: String,
@@ -45,7 +32,6 @@ extension GitHub.Collaborators {
             request: GitHub.Collaborators.Invitations.Update.Request
         )
 
-        // https://docs.github.com/en/rest/collaborators/invitations#delete-a-repository-invitation
         case deleteInvitation(owner: String, repo: String, invitationId: Int)
     }
 }
@@ -56,7 +42,7 @@ extension GitHub.Collaborators.API {
 
         public var body: some URLRouting.Router<GitHub.Collaborators.API> {
             OneOf {
-                // https://docs.github.com/en/rest/collaborators/collaborators#list-repository-collaborators
+
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, request: $0.1) },
@@ -66,8 +52,8 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.get
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "collaborators" }
                     Optionally {
                         Parse(
@@ -112,7 +98,6 @@ extension GitHub.Collaborators.API {
                     }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/collaborators#check-if-a-user-is-a-repository-collaborator
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, username: $0.1) },
@@ -122,13 +107,12 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.get
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "collaborators" }
-                    Path { Parse(.string) }  // username
+                    Path { Parse(.string) }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/collaborators#add-a-repository-collaborator
                 URLRouting.Route(
                     .convert(
                         apply: {
@@ -140,16 +124,15 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.put
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "collaborators" }
-                    Path { Parse(.string) }  // username
+                    Path { Parse(.string) }
                     Optionally {
                         URLRouting.Body(.json(GitHub.Collaborators.Add.Request.self))
                     }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/collaborators#remove-a-repository-collaborator
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, username: $0.1) },
@@ -159,13 +142,12 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.delete
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "collaborators" }
-                    Path { Parse(.string) }  // username
+                    Path { Parse(.string) }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/collaborators#get-repository-permissions-for-a-user
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, username: $0.1) },
@@ -175,14 +157,13 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.get
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "collaborators" }
-                    Path { Parse(.string) }  // username
+                    Path { Parse(.string) }
                     Path { "permission" }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/invitations#list-repository-invitations
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, request: $0.1) },
@@ -192,8 +173,8 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.get
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "invitations" }
                     Optionally {
                         Parse(
@@ -214,7 +195,6 @@ extension GitHub.Collaborators.API {
                     }
                 }
 
-                // https://docs.github.com/en/rest/collaborators/invitations#update-a-repository-invitation
                 URLRouting.Route(
                     .convert(
                         apply: {
@@ -226,14 +206,13 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.patch
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "invitations" }
-                    Path { Int.parser() }  // invitationId
+                    Path { Int.parser() }
                     URLRouting.Body(.json(GitHub.Collaborators.Invitations.Update.Request.self))
                 }
 
-                // https://docs.github.com/en/rest/collaborators/invitations#delete-a-repository-invitation
                 URLRouting.Route(
                     .convert(
                         apply: { (owner: $0.0.0, repo: $0.0.1, invitationId: $0.1) },
@@ -243,10 +222,10 @@ extension GitHub.Collaborators.API {
                 ) {
                     Method.delete
                     Path { "repos" }
-                    Path { Parse(.string) }  // owner
-                    Path { Parse(.string) }  // repo
+                    Path { Parse(.string) }
+                    Path { Parse(.string) }
                     Path { "invitations" }
-                    Path { Int.parser() }  // invitationId
+                    Path { Int.parser() }
                 }
             }
         }
