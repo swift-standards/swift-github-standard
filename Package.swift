@@ -31,7 +31,7 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
+            url: "https://github.com/swift-molecules/swift-tagged.git",
             branch: "main"
         ),
     ],
@@ -46,7 +46,7 @@ let package = Package(
                 .product(name: "RFC 3339", package: "swift-rfc-3339"),
                 .product(name: "RFC 3986", package: "swift-rfc-3986"),
 
-                .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
+                .product(name: "Tagged", package: "swift-tagged"),
             ]
         ),
         .testTarget(

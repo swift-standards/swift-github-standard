@@ -1,4 +1,4 @@
-import Tagged_Primitives
+import Tagged
 
 extension GitHub.Repository {
 

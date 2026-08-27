@@ -80,9 +80,9 @@ consumed by OAuth flows but are not token endpoints.
 ## Architecture
 
 `GitHub_Standard` defines contracts only. Typed clients live in
-[swift-github](https://github.com/swift-foundations/swift-github), and the HTTP
+[swift-github](https://github.com/swift-compositions/swift-github), and the HTTP
 binding lives in
-[swift-github-http](https://github.com/swift-foundations/swift-github-http).
+[swift-github-http](https://github.com/swift-compositions/swift-github-http).
 
 No deprecated `GitHub Types`, `GitHub Traffic`, `GitHub Stargazers`, or
 `GitHub Repositories` compatibility products are provided.
