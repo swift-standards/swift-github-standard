@@ -22,6 +22,7 @@ let package = Package(
             url: "https://github.com/swift-standards/swift-emailaddress-standard.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-6531.git", branch: "main"),
         .package(
             url: "https://github.com/swift-ietf/swift-rfc-3339.git",
             branch: "main"
@@ -51,7 +52,10 @@ let package = Package(
         ),
         .testTarget(
             name: "GitHub Standard Tests",
-            dependencies: ["GitHub Standard"]
+            dependencies: [
+                "GitHub Standard",
+                .product(name: "RFC 6531", package: "swift-rfc-6531"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]

@@ -1,6 +1,7 @@
 import EmailAddress_Standard
 import RFC_3339
 import RFC_3986
+import RFC_6531
 import Testing
 
 @testable import GitHub_Standard
@@ -44,8 +45,8 @@ extension GitHub.User.Authenticated {
         }
 
         @Test("Email list requires a typed non-null email address")
-        func emails() throws(EmailAddress.Error) {
-            let email = try EmailAddress("octocat@github.com")
+        func emails() throws {
+            let email = EmailAddress(rfc6531: try RFC_6531.Mailbox("octocat@github.com"))
             let item = Emails.List.Email(
                 email: email,
                 primary: true,
