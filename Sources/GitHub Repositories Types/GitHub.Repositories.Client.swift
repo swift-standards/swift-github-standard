@@ -2,7 +2,7 @@ import GitHub_Types_Shared
 
 extension GitHub.Repositories.Client {
 
-    public enum Error: Swift.Error, Sendable, Equatable {
+    public enum Error: Swift::Error, Sendable, Equatable {
         case list(reason: String)
         case get(reason: String)
         case create(reason: String)

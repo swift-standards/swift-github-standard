@@ -1,4 +1,4 @@
-import EmailAddress_Standard
+public import EmailAddress_Standard
 
 extension GitHub.User.Authenticated.Emails.List {
     public struct Email: Equatable, Hashable, Sendable {

@@ -1,4 +1,4 @@
-import RFC_3339
+public import RFC_3339
 
 extension GitHub.Repository.Traffic.Clones {
     public struct Clone: Equatable, Hashable, Sendable {

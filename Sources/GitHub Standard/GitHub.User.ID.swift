@@ -1,4 +1,4 @@
-import Tagged
+public import Tagged
 
 extension GitHub.User {
 

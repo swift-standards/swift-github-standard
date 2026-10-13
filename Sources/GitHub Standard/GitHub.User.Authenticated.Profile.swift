@@ -1,6 +1,6 @@
-import EmailAddress_Standard
-import RFC_3339
-import RFC_3986
+public import EmailAddress_Standard
+public import RFC_3339
+public import RFC_3986
 
 extension GitHub.User.Authenticated {
     public struct Profile: Equatable, Hashable, Sendable {

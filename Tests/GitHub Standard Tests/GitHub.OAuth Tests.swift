@@ -1,4 +1,5 @@
 import RFC_3986
+import Tagged
 import Testing
 
 @testable import GitHub_Standard

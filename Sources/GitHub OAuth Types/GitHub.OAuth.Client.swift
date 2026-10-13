@@ -3,7 +3,7 @@ import GitHub_Types_Shared
 
 extension GitHub.OAuth.Client {
 
-    public enum Error: Swift.Error, Sendable, Equatable {
+    public enum Error: Swift::Error, Sendable, Equatable {
         case exchangeCode(reason: String)
         case getAuthenticatedUser(reason: String)
         case getUserEmails(reason: String)

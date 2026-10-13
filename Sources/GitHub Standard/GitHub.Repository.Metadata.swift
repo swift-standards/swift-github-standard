@@ -1,5 +1,5 @@
-import RFC_3339
-import RFC_3986
+public import RFC_3339
+public import RFC_3986
 
 extension GitHub.Repository {
     public struct Metadata: Equatable, Hashable, Sendable {

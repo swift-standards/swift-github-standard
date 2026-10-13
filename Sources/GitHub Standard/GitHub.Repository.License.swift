@@ -1,4 +1,4 @@
-import RFC_3986
+public import RFC_3986
 
 extension GitHub.Repository {
     public struct License: Equatable, Hashable, Sendable {

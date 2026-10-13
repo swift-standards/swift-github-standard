@@ -1,4 +1,4 @@
-import RFC_3339
+public import RFC_3339
 
 extension GitHub.Repository.Stargazers {
     public struct Stargazer: Equatable, Hashable, Sendable {

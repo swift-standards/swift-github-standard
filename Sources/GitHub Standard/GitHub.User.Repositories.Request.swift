@@ -1,4 +1,4 @@
-import RFC_3339
+public import RFC_3339
 
 extension GitHub.User.Repositories {
     public struct Request: Equatable, Hashable, Sendable {

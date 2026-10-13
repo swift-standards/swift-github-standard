@@ -1,7 +1,7 @@
-import RFC_3986
+public import RFC_3986
 
 extension GitHub.OAuth.Token.Exchange {
-    public struct Error: Equatable, Swift.Error, Sendable {
+    public struct Error: Equatable, Swift::Error, Sendable {
         public let error: String
         public let errorDescription: String?
         public let errorURI: RFC_3986.URI?

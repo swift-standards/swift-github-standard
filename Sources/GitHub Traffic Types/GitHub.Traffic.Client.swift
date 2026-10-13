@@ -2,7 +2,7 @@ import GitHub_Types_Shared
 
 extension GitHub.Traffic.Client {
 
-    public enum Error: Swift.Error, Sendable, Equatable {
+    public enum Error: Swift::Error, Sendable, Equatable {
         case views(reason: String)
         case clones(reason: String)
         case paths(reason: String)

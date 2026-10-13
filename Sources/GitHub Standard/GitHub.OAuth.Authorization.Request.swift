@@ -1,4 +1,4 @@
-import RFC_3986
+public import RFC_3986
 
 extension GitHub.OAuth.Authorization {
     public struct Request: Equatable, Hashable, Sendable {
