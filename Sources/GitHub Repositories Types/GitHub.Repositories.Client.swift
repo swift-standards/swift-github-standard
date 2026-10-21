@@ -15,15 +15,13 @@ extension GitHub.Repositories {
     @Witness
     public struct Client: Sendable {
 
-        public var list:
-            @Sendable (_ request: List.Request?) async throws(Client.Error) -> List.Response
+        public var list: @Sendable (_ request: List.Request?) async throws(Client.Error) -> List.Response
 
         public var get:
             @Sendable (_ owner: String, _ repo: String) async throws(Client.Error) ->
                 GitHub.Repository
 
-        public var create:
-            @Sendable (_ request: Create.Request) async throws(Client.Error) -> GitHub.Repository
+        public var create: @Sendable (_ request: Create.Request) async throws(Client.Error) -> GitHub.Repository
 
         public var update:
             @Sendable (_ owner: String, _ repo: String, _ request: Update.Request)
