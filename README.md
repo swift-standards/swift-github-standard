@@ -1,92 +1,10 @@
 # swift-github-standard
 
-![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
-[![CI](https://github.com/swift-standards/swift-github-standard/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-standards/swift-github-standard/actions/workflows/ci.yml)
+Use this package when you call the GitHub REST API and want typed values for what you send and what comes back: repository metadata and contents, organization and user repository lists, traffic, stargazers, the authenticated user, and the OAuth web flow. Each endpoint is a namespace with a request and a response, such as `GitHub.Repository.Get.Request` and `GitHub.Repository.Get.Response`, so start from the endpoint you need under `GitHub`. The package only holds the values. Building URLs, decoding JSON and sending requests are left to your client.
 
-Foundation-free Swift value types for GitHub REST API contracts.
+## Laws
 
-## Ecosystem
-
-This package belongs to the Swift Institute Standards layer. It preserves GitHub's
-published wire vocabulary while leaving transport, authentication, retries, and
-application persistence to higher layers.
-
-## Products
-
-| Product | Module | Purpose |
-| --- | --- | --- |
-| GitHub Standard | `GitHub_Standard` | GitHub request, response, identifier, OAuth, user, repository, traffic, and stargazer contracts |
-
-## Installation
-
-Add the package and depend on the `GitHub Standard` product:
-
-```swift
-dependencies: [
-    .package(
-        url: "https://github.com/swift-standards/swift-github-standard.git",
-        branch: "main"
-    )
-]
-```
-
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: [
-        .product(
-            name: "GitHub Standard",
-            package: "swift-github-standard"
-        )
-    ]
-)
-```
-
-## Usage
-
-Repository traffic and stargazer history are distinct GitHub domains:
-
-```swift
-import GitHub_Standard
-
-let views = GitHub.Repository.Traffic.Views.Request(
-    owner: .init(rawValue: "swiftlang"),
-    repository: .init(rawValue: "swift"),
-    interval: .day
-)
-
-let stargazers = GitHub.Repository.Stargazers.Request(
-    owner: .init(rawValue: "swiftlang"),
-    repository: .init(rawValue: "swift"),
-    page: .first,
-    size: .maximum
-)
-```
-
-Traffic counts use `UInt64`, timestamps use `RFC_3339.DateTime`, and provider
-URIs use `RFC_3986.URI`. The package does not normalize those values into
-Foundation or application persistence types.
-
-Repository metadata is returned by both
-`GitHub.Repository.Get` and `GitHub.User.Repositories`. The latter models the
-authenticated-user repository collection, including GitHub's visibility, type,
-sort, direction, and timestamp filters.
-
-GitHub's OAuth authorization and token exchange contracts live under
-`GitHub.OAuth`. The authenticated profile and email endpoints retain the
-provider's Users API vocabulary under `GitHub.User.Authenticated`; they are
-consumed by OAuth flows but are not token endpoints.
-
-## Architecture
-
-`GitHub_Standard` defines contracts only. Typed clients live in
-[swift-github](https://github.com/swift-compositions/swift-github), and the HTTP
-binding lives in
-[swift-github-http](https://github.com/swift-compositions/swift-github-http).
-
-No deprecated `GitHub Types`, `GitHub Traffic`, `GitHub Stargazers`, or
-`GitHub Repositories` compatibility products are provided.
-
-## License
-
-This package is available under the MIT license.
+- `GitHub.Page.Number` starts at 1. `GitHub.Page.Size` is between 1 and 100, and `GitHub.Page.Size.maximum` is 100. Values outside these bounds make the initializer return nil.
+- `GitHub.Repository.Content.Path` needs at least one segment, and no segment may be empty, `.` or `..`. Such a path returns nil.
+- Every enumeration's raw value is GitHub's own spelling. A directory is `dir`, a symbolic link is `symlink`, sorting by full name is `full_name`, and the directions are `asc` and `desc`.
+- `GitHub.OAuth.Token.Exchange.Response.scope` keeps the granted scopes as the one comma separated string GitHub returns. Only `GitHub.OAuth.Authorization.Request.scopes` is a list.
