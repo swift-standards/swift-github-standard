@@ -1,4 +1,5 @@
 import Dependencies
+public import EmailAddress_Standard
 import GitHub_Types_Shared
 
 extension GitHub.OAuth.Client {
@@ -33,7 +34,7 @@ extension GitHub.OAuth {
             ) async throws(Client.Error) -> [Email]
 
         public struct Email: Codable, Sendable {
-            public let email: String
+            public let email: EmailAddress
             public let primary: Bool
             public let verified: Bool
             public let visibility: String?
