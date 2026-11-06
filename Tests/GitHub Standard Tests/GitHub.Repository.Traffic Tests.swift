@@ -4,8 +4,14 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.Repository.Traffic {
-    @Suite("GitHub.Repository.Traffic.Unit")
+enum `GitHub.Repository.Traffic Tests` {
+    typealias Operation = GitHub.Repository.Traffic.Operation
+    typealias Paths = GitHub.Repository.Traffic.Paths
+    typealias Views = GitHub.Repository.Traffic.Views
+}
+
+extension `GitHub.Repository.Traffic Tests` {
+    @Suite("`GitHub.Repository.Traffic Tests`.Unit")
     struct Unit {
         @Test("Traffic requests retain provider repository vocabulary")
         func requests() {

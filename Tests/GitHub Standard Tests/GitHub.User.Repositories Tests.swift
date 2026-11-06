@@ -4,8 +4,13 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.User.Repositories {
-    @Suite("GitHub.User.Repositories.Unit")
+enum `GitHub.User.Repositories Tests` {
+    typealias Operation = GitHub.User.Repositories.Operation
+    typealias Request = GitHub.User.Repositories.Request
+}
+
+extension `GitHub.User.Repositories Tests` {
+    @Suite("`GitHub.User.Repositories Tests`.Unit")
     struct Unit {
         @Test("Authenticated-user repository filters retain provider wire values")
         func request() throws(RFC_3339.DateTime.Error) {

@@ -5,8 +5,10 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.Repository.Metadata {
-    @Suite("GitHub.Repository.Metadata.Unit")
+enum `GitHub.Repository.Metadata Tests` {}
+
+extension `GitHub.Repository.Metadata Tests` {
+    @Suite("`GitHub.Repository.Metadata Tests`.Unit")
     struct Unit {
         @Test("Metadata retains provider vocabulary without Foundation conversion")
         func values() throws(RFC_3986.Error) {

@@ -3,8 +3,15 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.Repository.Content {
-    @Suite("GitHub.Repository.Content.Unit")
+enum `GitHub.Repository.Content Tests` {
+    typealias Kind = GitHub.Repository.Content.Kind
+    typealias Operation = GitHub.Repository.Content.Operation
+    typealias Path = GitHub.Repository.Content.Path
+    typealias Request = GitHub.Repository.Content.Request
+}
+
+extension `GitHub.Repository.Content Tests` {
+    @Suite("`GitHub.Repository.Content Tests`.Unit")
     struct Unit {
         @Test("The operation retains the provider content request")
         func operation() throws {

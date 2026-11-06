@@ -4,8 +4,13 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.OAuth {
-    @Suite("GitHub.OAuth.Unit")
+enum `GitHub.OAuth Tests` {
+    typealias Authorization = GitHub.OAuth.Authorization
+    typealias Token = GitHub.OAuth.Token
+}
+
+extension `GitHub.OAuth Tests` {
+    @Suite("`GitHub.OAuth Tests`.Unit")
     struct Unit {
         @Test("Authorization preserves provider query values")
         func authorization() throws(RFC_3986.Error) {

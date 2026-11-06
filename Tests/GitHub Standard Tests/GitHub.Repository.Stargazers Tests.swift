@@ -5,8 +5,15 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.Repository.Stargazers {
-    @Suite("GitHub.Repository.Stargazers.Unit")
+enum `GitHub.Repository.Stargazers Tests` {
+    typealias Operation = GitHub.Repository.Stargazers.Operation
+    typealias Request = GitHub.Repository.Stargazers.Request
+    typealias Response = GitHub.Repository.Stargazers.Response
+    typealias Stargazer = GitHub.Repository.Stargazers.Stargazer
+}
+
+extension `GitHub.Repository.Stargazers Tests` {
+    @Suite("`GitHub.Repository.Stargazers Tests`.Unit")
     struct Unit {
         @Test("Stargazers preserve login and starred-at wire semantics")
         func response() throws(RFC_3986.Error) {

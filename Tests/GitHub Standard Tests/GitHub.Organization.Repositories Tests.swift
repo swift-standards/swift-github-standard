@@ -3,8 +3,10 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.Organization.Repositories {
-    @Suite("GitHub.Organization.Repositories.Unit")
+enum `GitHub.Organization.Repositories Tests` {}
+
+extension `GitHub.Organization.Repositories Tests` {
+    @Suite("`GitHub.Organization.Repositories Tests`.Unit")
     struct Unit {
         @Test("The request retains semantic organization and pagination values")
         func request() {

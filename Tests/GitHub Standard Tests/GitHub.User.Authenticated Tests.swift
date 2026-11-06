@@ -7,8 +7,14 @@ import Testing
 
 @testable import GitHub_Standard
 
-extension GitHub.User.Authenticated {
-    @Suite("GitHub.User.Authenticated.Unit")
+enum `GitHub.User.Authenticated Tests` {
+    typealias Emails = GitHub.User.Authenticated.Emails
+    typealias Get = GitHub.User.Authenticated.Get
+    typealias Profile = GitHub.User.Authenticated.Profile
+}
+
+extension `GitHub.User.Authenticated Tests` {
+    @Suite("`GitHub.User.Authenticated Tests`.Unit")
     struct Unit {
         @Test("Profile preserves typed provider values and nullable email")
         func profile() throws(RFC_3339.DateTime.Error) {
