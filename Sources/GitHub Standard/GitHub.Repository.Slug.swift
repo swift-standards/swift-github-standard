@@ -1,6 +1,5 @@
 public import Tagged
 
-
 extension GitHub.Repository {
 
     /// `owner/name`: how GitHub writes a repository, and what its REST paths and `full_name` hold.
