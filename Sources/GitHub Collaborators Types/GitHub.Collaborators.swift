@@ -36,22 +36,24 @@ extension GitHub.Collaborators.List {
             self.perPage = perPage
             self.page = page
         }
-
-        private enum CodingKeys: String, CodingKey {
-            case affiliation
-            case permission
-            case perPage = "per_page"
-            case page
-        }
-
-        public enum Affiliation: String, Codable, Equatable, Sendable {
-            case outside
-            case direct
-            case all
-        }
     }
 
     public typealias Response = [GitHub.Collaborator]
+}
+
+extension GitHub.Collaborators.List.Request {
+    private enum CodingKeys: String, CodingKey {
+        case affiliation
+        case permission
+        case perPage = "per_page"
+        case page
+    }
+
+    public enum Affiliation: String, Codable, Equatable, Sendable {
+        case outside
+        case direct
+        case all
+    }
 }
 
 extension GitHub.Collaborators {
@@ -70,11 +72,13 @@ extension GitHub.Collaborators.Check {
             self.message = message
             self.documentationUrl = documentationUrl
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case message
-            case documentationUrl = "documentation_url"
-        }
+extension GitHub.Collaborators.Check.Response {
+    private enum CodingKeys: String, CodingKey {
+        case message
+        case documentationUrl = "documentation_url"
     }
 }
 
@@ -126,19 +130,21 @@ extension GitHub.Collaborators.Add {
             self.url = url
             self.htmlUrl = htmlUrl
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case nodeId = "node_id"
-            case repositoryId = "repository_id"
-            case invitee
-            case inviter
-            case permissions
-            case createdAt = "created_at"
-            case expired
-            case url
-            case htmlUrl = "html_url"
-        }
+extension GitHub.Collaborators.Add.Response {
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case nodeId = "node_id"
+        case repositoryId = "repository_id"
+        case invitee
+        case inviter
+        case permissions
+        case createdAt = "created_at"
+        case expired
+        case url
+        case htmlUrl = "html_url"
     }
 }
 
@@ -158,11 +164,13 @@ extension GitHub.Collaborators.Remove {
             self.message = message
             self.documentationUrl = documentationUrl
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case message
-            case documentationUrl = "documentation_url"
-        }
+extension GitHub.Collaborators.Remove.Response {
+    private enum CodingKeys: String, CodingKey {
+        case message
+        case documentationUrl = "documentation_url"
     }
 }
 
@@ -185,12 +193,14 @@ extension GitHub.Collaborators.GetPermission {
             self.roleName = roleName
             self.user = user
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case permission
-            case roleName = "role_name"
-            case user
-        }
+extension GitHub.Collaborators.GetPermission.Response {
+    private enum CodingKeys: String, CodingKey {
+        case permission
+        case roleName = "role_name"
+        case user
     }
 }
 
@@ -214,14 +224,16 @@ extension GitHub.Collaborators.Invitations.List {
             self.perPage = perPage
             self.page = page
         }
-
-        private enum CodingKeys: String, CodingKey {
-            case perPage = "per_page"
-            case page
-        }
     }
 
     public typealias Response = [GitHub.RepositoryInvitation]
+}
+
+extension GitHub.Collaborators.Invitations.List.Request {
+    private enum CodingKeys: String, CodingKey {
+        case perPage = "per_page"
+        case page
+    }
 }
 
 extension GitHub.Collaborators.Invitations {
@@ -256,18 +268,18 @@ extension GitHub.Collaborators.Invitations.Delete {
             self.message = message
             self.documentationUrl = documentationUrl
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case message
-            case documentationUrl = "documentation_url"
-        }
+extension GitHub.Collaborators.Invitations.Delete.Response {
+    private enum CodingKeys: String, CodingKey {
+        case message
+        case documentationUrl = "documentation_url"
     }
 }
 
 extension GitHub {
     public struct Collaborator: Codable, Equatable, Sendable, Identifiable {
-        public typealias ID = Tagged<Self, Int>
-
         public let id: ID
         public let login: String
         public let nodeId: String
@@ -332,34 +344,9 @@ extension GitHub {
             self.permissions = permissions
             self.roleName = roleName
         }
-
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case login
-            case nodeId = "node_id"
-            case avatarUrl = "avatar_url"
-            case gravatarId = "gravatar_id"
-            case url
-            case htmlUrl = "html_url"
-            case followersUrl = "followers_url"
-            case followingUrl = "following_url"
-            case gistsUrl = "gists_url"
-            case starredUrl = "starred_url"
-            case subscriptionsUrl = "subscriptions_url"
-            case organizationsUrl = "organizations_url"
-            case reposUrl = "repos_url"
-            case eventsUrl = "events_url"
-            case receivedEventsUrl = "received_events_url"
-            case type
-            case siteAdmin = "site_admin"
-            case permissions
-            case roleName = "role_name"
-        }
     }
 
     public struct User: Codable, Equatable, Sendable, Identifiable {
-        public typealias ID = Tagged<Self, Int>
-
         public let id: ID
         public let login: String
         public let nodeId: String
@@ -391,23 +378,9 @@ extension GitHub {
             self.type = type
             self.siteAdmin = siteAdmin
         }
-
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case login
-            case nodeId = "node_id"
-            case avatarUrl = "avatar_url"
-            case gravatarId = "gravatar_id"
-            case url
-            case htmlUrl = "html_url"
-            case type
-            case siteAdmin = "site_admin"
-        }
     }
 
     public struct RepositoryInvitation: Codable, Equatable, Sendable, Identifiable {
-        public typealias ID = Tagged<Self, Int>
-
         public let id: ID
         public let nodeId: String
         public let repository: GitHub.Repository
@@ -442,18 +415,65 @@ extension GitHub {
             self.url = url
             self.htmlUrl = htmlUrl
         }
+    }
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case nodeId = "node_id"
-            case repository
-            case invitee
-            case inviter
-            case permissions
-            case createdAt = "created_at"
-            case expired
-            case url
-            case htmlUrl = "html_url"
-        }
+extension GitHub.Collaborator {
+    public typealias ID = Tagged<Self, Int>
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case login
+        case nodeId = "node_id"
+        case avatarUrl = "avatar_url"
+        case gravatarId = "gravatar_id"
+        case url
+        case htmlUrl = "html_url"
+        case followersUrl = "followers_url"
+        case followingUrl = "following_url"
+        case gistsUrl = "gists_url"
+        case starredUrl = "starred_url"
+        case subscriptionsUrl = "subscriptions_url"
+        case organizationsUrl = "organizations_url"
+        case reposUrl = "repos_url"
+        case eventsUrl = "events_url"
+        case receivedEventsUrl = "received_events_url"
+        case type
+        case siteAdmin = "site_admin"
+        case permissions
+        case roleName = "role_name"
+    }
+}
+
+extension GitHub.User {
+    public typealias ID = Tagged<Self, Int>
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case login
+        case nodeId = "node_id"
+        case avatarUrl = "avatar_url"
+        case gravatarId = "gravatar_id"
+        case url
+        case htmlUrl = "html_url"
+        case type
+        case siteAdmin = "site_admin"
+    }
+}
+
+extension GitHub.RepositoryInvitation {
+    public typealias ID = Tagged<Self, Int>
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case nodeId = "node_id"
+        case repository
+        case invitee
+        case inviter
+        case permissions
+        case createdAt = "created_at"
+        case expired
+        case url
+        case htmlUrl = "html_url"
     }
 }
