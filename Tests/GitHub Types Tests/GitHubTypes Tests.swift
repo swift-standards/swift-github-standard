@@ -1,8 +1,8 @@
 import GitHub_Types
 import Testing
 
-@Suite("GitHub Types Tests")
-struct GitHubTypesTests {
+@Suite
+struct `GitHub Types Tests` {
     @Test
     func `Basic initialization`() {
 

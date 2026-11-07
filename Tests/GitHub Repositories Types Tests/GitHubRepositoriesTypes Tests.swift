@@ -1,8 +1,8 @@
 import GitHub_Repositories_Types
 import Testing
 
-@Suite("GitHub Repositories Types Tests")
-struct GitHubRepositoriesTypesTests {
+@Suite
+struct `GitHub Repositories Types Tests` {
     @Test
     func `Repositories API router generates correct URLs`() throws {
         let router = GitHub.Repositories.API.Router()

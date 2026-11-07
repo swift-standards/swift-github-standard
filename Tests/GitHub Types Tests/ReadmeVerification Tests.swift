@@ -8,8 +8,8 @@ import Testing
 @testable import GitHub_Types
 @testable import GitHub_Types_Shared
 
-@Suite("README Code Examples Validation", .serialized)
-struct ReadmeVerificationTests {
+@Suite(.serialized)
+struct `README Code Examples Validation` {
 
     @Test
     func `Verify module imports compile`() async throws {

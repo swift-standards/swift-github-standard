@@ -1,8 +1,8 @@
 import GitHub_Traffic_Types
 import Testing
 
-@Suite("GitHub Traffic Types Tests")
-struct GitHubTrafficTypesTests {
+@Suite
+struct `GitHub Traffic Types Tests` {
     @Test
     func `Traffic API router generates correct URLs`() throws {
         let router = GitHub.Traffic.API.Router()
