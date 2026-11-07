@@ -1,11 +1,15 @@
 import GitHub_Types
 import Testing
 
-@Suite
-struct `GitHub Types Tests` {
-    @Test
-    func `Basic initialization`() {
+enum `GitHubTypes Tests` {}
 
-        #expect(true)
+extension `GitHubTypes Tests` {
+    @Suite
+    struct `GitHub Types Tests` {
+        @Test
+        func `Basic initialization`() {
+
+            #expect(true)
+        }
     }
 }

@@ -1,39 +1,43 @@
 import GitHub_Traffic_Types
 import Testing
 
-@Suite
-struct `GitHub Traffic Types Tests` {
-    @Test
-    func `Traffic API router generates correct URLs`() throws {
-        let router = GitHub.Traffic.API.Router()
+enum `GitHubTrafficTypes Tests` {}
 
-        let viewsAPI = GitHub.Traffic.API.views(
-            owner: "coenttb",
-            repo: "swift-github-types",
-            per: .day
-        )
-        let viewsURL = router.url(for: viewsAPI)
-        #expect(viewsURL.path == "/repos/coenttb/swift-github-types/traffic/views")
-        #expect(viewsURL.query == "per=day")
+extension `GitHubTrafficTypes Tests` {
+    @Suite
+    struct `GitHub Traffic Types Tests` {
+        @Test
+        func `Traffic API router generates correct URLs`() throws {
+            let router = GitHub.Traffic.API.Router()
 
-        let clonesAPI = GitHub.Traffic.API.clones(
-            owner: "coenttb",
-            repo: "swift-github-types",
-            per: .week
-        )
-        let clonesURL = router.url(for: clonesAPI)
-        #expect(clonesURL.path == "/repos/coenttb/swift-github-types/traffic/clones")
-        #expect(clonesURL.query == "per=week")
+            let viewsAPI = GitHub.Traffic.API.views(
+                owner: "coenttb",
+                repo: "swift-github-types",
+                per: .day
+            )
+            let viewsURL = router.url(for: viewsAPI)
+            #expect(viewsURL.path == "/repos/coenttb/swift-github-types/traffic/views")
+            #expect(viewsURL.query == "per=day")
 
-        let pathsAPI = GitHub.Traffic.API.paths(owner: "coenttb", repo: "swift-github-types")
-        let pathsURL = router.url(for: pathsAPI)
-        #expect(pathsURL.path == "/repos/coenttb/swift-github-types/traffic/popular/paths")
+            let clonesAPI = GitHub.Traffic.API.clones(
+                owner: "coenttb",
+                repo: "swift-github-types",
+                per: .week
+            )
+            let clonesURL = router.url(for: clonesAPI)
+            #expect(clonesURL.path == "/repos/coenttb/swift-github-types/traffic/clones")
+            #expect(clonesURL.query == "per=week")
 
-        let referrersAPI = GitHub.Traffic.API.referrers(
-            owner: "coenttb",
-            repo: "swift-github-types"
-        )
-        let referrersURL = router.url(for: referrersAPI)
-        #expect(referrersURL.path == "/repos/coenttb/swift-github-types/traffic/popular/referrers")
+            let pathsAPI = GitHub.Traffic.API.paths(owner: "coenttb", repo: "swift-github-types")
+            let pathsURL = router.url(for: pathsAPI)
+            #expect(pathsURL.path == "/repos/coenttb/swift-github-types/traffic/popular/paths")
+
+            let referrersAPI = GitHub.Traffic.API.referrers(
+                owner: "coenttb",
+                repo: "swift-github-types"
+            )
+            let referrersURL = router.url(for: referrersAPI)
+            #expect(referrersURL.path == "/repos/coenttb/swift-github-types/traffic/popular/referrers")
+        }
     }
 }
