@@ -29,12 +29,10 @@ extension GitHub {
             self.perPage = perPage
             self.page = page
         }
-    }
-}
 
-extension GitHub.PaginationRequest {
-    private enum CodingKeys: String, CodingKey {
-        case perPage = "per_page"
-        case page
+        private enum CodingKeys: String, CodingKey {
+            case perPage = "per_page"
+            case page
+        }
     }
 }
