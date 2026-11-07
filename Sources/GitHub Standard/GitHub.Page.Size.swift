@@ -1,6 +1,5 @@
 extension GitHub.Page {
     public struct Size: Equatable, Hashable, Sendable {
-        public static let maximum = Self(validated: 100)
 
         public let rawValue: UInt
 
@@ -13,4 +12,8 @@ extension GitHub.Page {
             self.rawValue = rawValue
         }
     }
+}
+
+extension GitHub.Page.Size {
+    public static let maximum = Self(validated: 100)
 }
