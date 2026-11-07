@@ -3,8 +3,8 @@ import Testing
 
 @Suite("GitHub Types Tests")
 struct GitHubTypesTests {
-    @Test("Basic initialization")
-    func testBasicInit() {
+    @Test
+    func `Basic initialization`() {
 
         #expect(true)
     }

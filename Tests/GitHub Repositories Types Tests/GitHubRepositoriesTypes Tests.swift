@@ -3,8 +3,8 @@ import Testing
 
 @Suite("GitHub Repositories Types Tests")
 struct GitHubRepositoriesTypesTests {
-    @Test("Repositories API router generates correct URLs")
-    func testRepositoriesAPIRoutes() throws {
+    @Test
+    func `Repositories API router generates correct URLs`() throws {
         let router = GitHub.Repositories.API.Router()
 
         let listAPI = GitHub.Repositories.API.list(request: nil)

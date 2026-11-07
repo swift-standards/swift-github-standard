@@ -3,8 +3,8 @@ import Testing
 
 @Suite("GitHub Traffic Types Tests")
 struct GitHubTrafficTypesTests {
-    @Test("Traffic API router generates correct URLs")
-    func testTrafficAPIRoutes() throws {
+    @Test
+    func `Traffic API router generates correct URLs`() throws {
         let router = GitHub.Traffic.API.Router()
 
         let viewsAPI = GitHub.Traffic.API.views(

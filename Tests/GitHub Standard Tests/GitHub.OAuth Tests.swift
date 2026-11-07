@@ -12,8 +12,8 @@ enum `GitHub.OAuth Tests` {
 extension `GitHub.OAuth Tests` {
     @Suite("`GitHub.OAuth Tests`.Unit")
     struct Unit {
-        @Test("Authorization preserves provider query values")
-        func authorization() throws(RFC_3986.Error) {
+        @Test
+        func `Authorization preserves provider query values`() throws(RFC_3986.Error) {
             let redirectURI = try RFC_3986.URI("https://example.com/oauth/callback")
             let request = Authorization.Request(
                 clientID: "client-id",
@@ -27,8 +27,8 @@ extension `GitHub.OAuth Tests` {
             #expect(request.scopes == ["read:user", "user:email"])
         }
 
-        @Test("Token exchange preserves provider wire values")
-        func token() throws(RFC_3986.Error) {
+        @Test
+        func `Token exchange preserves provider wire values`() throws(RFC_3986.Error) {
             let redirectURI = try RFC_3986.URI("https://example.com/oauth/callback")
             let request = Token.Exchange.Request(
                 clientID: "client-id",

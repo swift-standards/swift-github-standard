@@ -13,8 +13,8 @@ enum `GitHub.Repository.Traffic Tests` {
 extension `GitHub.Repository.Traffic Tests` {
     @Suite("`GitHub.Repository.Traffic Tests`.Unit")
     struct Unit {
-        @Test("Traffic requests retain provider repository vocabulary")
-        func requests() {
+        @Test
+        func `Traffic requests retain provider repository vocabulary`() {
             let views = Views.Request(
                 owner: .init("swiftlang"),
                 repository: .init("swift"),
@@ -32,8 +32,8 @@ extension `GitHub.Repository.Traffic Tests` {
             #expect(Operation.paths(paths) == .paths(paths))
         }
 
-        @Test("Traffic preserves RFC 3339 timestamps and nonnegative wire counts")
-        func response() throws(RFC_3339.DateTime.Error) {
+        @Test
+        func `Traffic preserves RFC 3339 timestamps and nonnegative wire counts`() throws(RFC_3339.DateTime.Error) {
             let timestamp = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
             let view = Views.View(timestamp: timestamp, count: 12, uniques: 7)
             let response = Views.Response(count: 12, uniques: 7, views: [view])
@@ -43,8 +43,8 @@ extension `GitHub.Repository.Traffic Tests` {
             #expect(response.uniques == UInt64(7))
         }
 
-        @Test("Traffic and Stargazers remain distinct provider domains")
-        func boundary() {
+        @Test
+        func `Traffic and Stargazers remain distinct provider domains`() {
             #expect(String(reflecting: Views.self).contains("Traffic"))
             #expect(String(reflecting: GitHub.Repository.Stargazers.self).contains("Stargazers"))
         }

@@ -8,8 +8,8 @@ enum `GitHub.Organization.Repositories Tests` {}
 extension `GitHub.Organization.Repositories Tests` {
     @Suite("`GitHub.Organization.Repositories Tests`.Unit")
     struct Unit {
-        @Test("The request retains semantic organization and pagination values")
-        func request() {
+        @Test
+        func `The request retains semantic organization and pagination values`() {
             let request = GitHub.Organization.Repositories.Request(
                 organization: .init("swiftlang"),
                 type: .public,
@@ -23,8 +23,8 @@ extension `GitHub.Organization.Repositories Tests` {
             #expect(request.size.rawValue == 100)
         }
 
-        @Test("Page values enforce GitHub's published bounds")
-        func page() {
+        @Test
+        func `Page values enforce GitHub's published bounds`() {
             #expect(GitHub.Page.Number(rawValue: 0) == nil)
             #expect(GitHub.Page.Number(rawValue: 1)?.rawValue == 1)
             #expect(GitHub.Page.Size(rawValue: 0) == nil)
@@ -32,8 +32,8 @@ extension `GitHub.Organization.Repositories Tests` {
             #expect(GitHub.Page.Size(rawValue: 101) == nil)
         }
 
-        @Test("The response preserves repository identity and public state")
-        func response() {
+        @Test
+        func `The response preserves repository identity and public state`() {
             let repository = GitHub.Repository.Summary(
                 id: .init(42),
                 name: .init("swift"),

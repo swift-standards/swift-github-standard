@@ -13,8 +13,8 @@ enum `GitHub.Repository.Content Tests` {
 extension `GitHub.Repository.Content Tests` {
     @Suite("`GitHub.Repository.Content Tests`.Unit")
     struct Unit {
-        @Test("The operation retains the provider content request")
-        func operation() throws {
+        @Test
+        func `The operation retains the provider content request`() throws {
             let path = try #require(Path(segments: ["Sources", "Package.swift"]))
             let request = Request(
                 organization: .init("swift-institute"),
@@ -26,16 +26,16 @@ extension `GitHub.Repository.Content Tests` {
             #expect(request.path.segments == ["Sources", "Package.swift"])
         }
 
-        @Test("Content paths are nonempty relative segment sequences")
-        func path() {
+        @Test
+        func `Content paths are nonempty relative segment sequences`() {
             #expect(Path(segments: []) == nil)
             #expect(Path(segments: [""]) == nil)
             #expect(Path(segments: [".."]) == nil)
             #expect(Path(segments: ["Package.swift"])?.segments == ["Package.swift"])
         }
 
-        @Test("Provider content kinds retain their wire spellings")
-        func kind() {
+        @Test
+        func `Provider content kinds retain their wire spellings`() {
             #expect(Kind(rawValue: "dir") == .directory)
             #expect(Kind(rawValue: "file") == .file)
             #expect(Kind(rawValue: "symlink") == .symbolicLink)

@@ -16,8 +16,8 @@ enum `GitHub.User.Authenticated Tests` {
 extension `GitHub.User.Authenticated Tests` {
     @Suite("`GitHub.User.Authenticated Tests`.Unit")
     struct Unit {
-        @Test("Profile preserves typed provider values and nullable email")
-        func profile() throws(RFC_3339.DateTime.Error) {
+        @Test
+        func `Profile preserves typed provider values and nullable email`() throws(RFC_3339.DateTime.Error) {
             let createdAt = try RFC_3339.DateTime("2020-01-01T00:00:00Z")
             let updatedAt = try RFC_3339.DateTime("2026-07-22T00:00:00Z")
             let avatarURL: RFC_3986.URI
@@ -51,8 +51,8 @@ extension `GitHub.User.Authenticated Tests` {
             #expect(user.publicRepos == 8)
         }
 
-        @Test("Email list requires a typed non-null email address")
-        func emails() throws {
+        @Test
+        func `Email list requires a typed non-null email address`() throws {
             let email = EmailAddress(rfc6531: try RFC_6531.Mailbox("octocat@github.com"))
             let item = Emails.List.Email(
                 email: email,

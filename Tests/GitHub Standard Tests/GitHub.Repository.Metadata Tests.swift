@@ -10,8 +10,8 @@ enum `GitHub.Repository.Metadata Tests` {}
 extension `GitHub.Repository.Metadata Tests` {
     @Suite("`GitHub.Repository.Metadata Tests`.Unit")
     struct Unit {
-        @Test("Metadata retains provider vocabulary without Foundation conversion")
-        func values() throws(RFC_3986.Error) {
+        @Test
+        func `Metadata retains provider vocabulary without Foundation conversion`() throws(RFC_3986.Error) {
             let owner = GitHub.Owner.Summary(
                 id: .init(1),
                 login: .init("swiftlang"),

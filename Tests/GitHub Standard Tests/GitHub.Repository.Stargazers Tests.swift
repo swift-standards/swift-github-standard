@@ -15,8 +15,8 @@ enum `GitHub.Repository.Stargazers Tests` {
 extension `GitHub.Repository.Stargazers Tests` {
     @Suite("`GitHub.Repository.Stargazers Tests`.Unit")
     struct Unit {
-        @Test("Stargazers preserve login and starred-at wire semantics")
-        func response() throws(RFC_3986.Error) {
+        @Test
+        func `Stargazers preserve login and starred-at wire semantics`() throws(RFC_3986.Error) {
             let user = GitHub.User.Summary(
                 id: .init(42),
                 login: .init("octocat"),
@@ -42,8 +42,8 @@ extension `GitHub.Repository.Stargazers Tests` {
             #expect(response.stargazers.first?.starredAt == starredAt)
         }
 
-        @Test("Pagination uses the shared bounded GitHub page vocabulary")
-        func request() {
+        @Test
+        func `Pagination uses the shared bounded GitHub page vocabulary`() {
             let request = Request(
                 owner: .init("swiftlang"),
                 repository: .init("swift"),
