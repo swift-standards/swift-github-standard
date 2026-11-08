@@ -17,31 +17,4 @@ extension GitHub {
 }
 
 extension GitHub.API {
-    public struct Router: ParserPrinter, Sendable {
-        public init() {}
-
-        public var body: some URLRouting.Router<GitHub.API> {
-            OneOf {
-                URLRouting.Route(.case(GitHub.API.cases.traffic)) {
-                    GitHub.Traffic.API.Router()
-                }
-
-                URLRouting.Route(.case(GitHub.API.cases.repositories)) {
-                    GitHub.Repositories.API.Router()
-                }
-
-                URLRouting.Route(.case(GitHub.API.cases.stargazers)) {
-                    GitHub.Stargazers.API.Router()
-                }
-
-                URLRouting.Route(.case(GitHub.API.cases.oauth)) {
-                    GitHub.OAuth.API.Router()
-                }
-
-                URLRouting.Route(.case(GitHub.API.cases.collaborators)) {
-                    GitHub.Collaborators.API.Router()
-                }
-            }
-        }
-    }
 }
