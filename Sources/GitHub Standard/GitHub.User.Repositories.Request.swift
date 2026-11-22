@@ -9,8 +9,8 @@ extension GitHub.User.Repositories {
         public let direction: Direction?
         public let page: GitHub.Page.Number?
         public let size: GitHub.Page.Size?
-        public let since: RFC_3339.DateTime?
-        public let before: RFC_3339.DateTime?
+        public let since: IETF.RFC.`3339`.DateTime?
+        public let before: IETF.RFC.`3339`.DateTime?
 
         public init(
             visibility: Visibility? = nil,
@@ -20,8 +20,8 @@ extension GitHub.User.Repositories {
             direction: Direction? = nil,
             page: GitHub.Page.Number? = nil,
             size: GitHub.Page.Size? = nil,
-            since: RFC_3339.DateTime? = nil,
-            before: RFC_3339.DateTime? = nil
+            since: IETF.RFC.`3339`.DateTime? = nil,
+            before: IETF.RFC.`3339`.DateTime? = nil
         ) {
             self.visibility = visibility
             self.affiliation = affiliation

@@ -13,8 +13,8 @@ extension `GitHub.OAuth Tests` {
     @Suite("`GitHub.OAuth Tests`.Unit")
     struct Unit {
         @Test
-        func `Authorization preserves provider query values`() throws(RFC_3986.Error) {
-            let redirectURI = try RFC_3986.URI("https://example.com/oauth/callback")
+        func `Authorization preserves provider query values`() throws(IETF.RFC.`3986`.Error) {
+            let redirectURI = try IETF.RFC.`3986`.URI("https://example.com/oauth/callback")
             let request = Authorization.Request(
                 clientID: "client-id",
                 redirectURI: redirectURI,
@@ -28,8 +28,8 @@ extension `GitHub.OAuth Tests` {
         }
 
         @Test
-        func `Token exchange preserves provider wire values`() throws(RFC_3986.Error) {
-            let redirectURI = try RFC_3986.URI("https://example.com/oauth/callback")
+        func `Token exchange preserves provider wire values`() throws(IETF.RFC.`3986`.Error) {
+            let redirectURI = try IETF.RFC.`3986`.URI("https://example.com/oauth/callback")
             let request = Token.Exchange.Request(
                 clientID: "client-id",
                 clientSecret: "client-secret",

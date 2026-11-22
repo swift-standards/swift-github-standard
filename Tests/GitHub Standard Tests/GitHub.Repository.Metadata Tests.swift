@@ -11,21 +11,21 @@ extension `GitHub.Repository.Metadata Tests` {
     @Suite("`GitHub.Repository.Metadata Tests`.Unit")
     struct Unit {
         @Test
-        func `Metadata retains provider vocabulary without Foundation conversion`() throws(RFC_3986.Error) {
+        func `Metadata retains provider vocabulary without Foundation conversion`() throws(IETF.RFC.`3986`.Error) {
             let owner = GitHub.Owner.Summary(
                 id: .init(1),
                 login: .init("swiftlang"),
                 nodeID: "MDEyOk9yZ2FuaXphdGlvbjE=",
-                avatarURL: try RFC_3986.URI("https://avatars.githubusercontent.com/u/1"),
+                avatarURL: try IETF.RFC.`3986`.URI("https://avatars.githubusercontent.com/u/1"),
                 gravatarID: "",
-                url: try RFC_3986.URI("https://api.github.com/users/swiftlang"),
-                htmlURL: try RFC_3986.URI("https://github.com/swiftlang"),
+                url: try IETF.RFC.`3986`.URI("https://api.github.com/users/swiftlang"),
+                htmlURL: try IETF.RFC.`3986`.URI("https://github.com/swiftlang"),
                 type: "Organization",
                 siteAdmin: false
             )
-            let createdAt: RFC_3339.DateTime
-            do throws(RFC_3339.DateTime.Error) {
-                createdAt = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
+            let createdAt: IETF.RFC.`3339`.DateTime
+            do throws(IETF.RFC.`3339`.DateTime.Error) {
+                createdAt = try IETF.RFC.`3339`.DateTime("2026-07-22T10:00:00Z")
             } catch {
                 Issue.record("invalid RFC 3339 fixture: \(error)")
                 return
@@ -36,8 +36,8 @@ extension `GitHub.Repository.Metadata Tests` {
                 name: .init("swift"),
                 fullName: "swiftlang/swift",
                 owner: owner,
-                htmlURL: try RFC_3986.URI("https://github.com/swiftlang/swift"),
-                url: try RFC_3986.URI("https://api.github.com/repos/swiftlang/swift"),
+                htmlURL: try IETF.RFC.`3986`.URI("https://github.com/swiftlang/swift"),
+                url: try IETF.RFC.`3986`.URI("https://api.github.com/repos/swiftlang/swift"),
                 homepage: nil,
                 description: "The Swift Programming Language",
                 isPrivate: false,

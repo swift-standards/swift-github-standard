@@ -33,8 +33,8 @@ extension `GitHub.Repository.Traffic Tests` {
         }
 
         @Test
-        func `Traffic preserves RFC 3339 timestamps and nonnegative wire counts`() throws(RFC_3339.DateTime.Error) {
-            let timestamp = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
+        func `Traffic preserves RFC 3339 timestamps and nonnegative wire counts`() throws(IETF.RFC.`3339`.DateTime.Error) {
+            let timestamp = try IETF.RFC.`3339`.DateTime("2026-07-22T10:00:00Z")
             let view = Views.View(timestamp: timestamp, count: 12, uniques: 7)
             let response = Views.Response(count: 12, uniques: 7, views: [view])
 

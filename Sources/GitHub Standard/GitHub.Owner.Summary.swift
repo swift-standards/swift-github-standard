@@ -5,10 +5,10 @@ extension GitHub.Owner {
         public let id: ID
         public let login: Login
         public let nodeID: String
-        public let avatarURL: RFC_3986.URI
+        public let avatarURL: IETF.RFC.`3986`.URI
         public let gravatarID: String
-        public let url: RFC_3986.URI
-        public let htmlURL: RFC_3986.URI
+        public let url: IETF.RFC.`3986`.URI
+        public let htmlURL: IETF.RFC.`3986`.URI
         public let type: String
         public let siteAdmin: Bool
 
@@ -16,10 +16,10 @@ extension GitHub.Owner {
             id: ID,
             login: Login,
             nodeID: String,
-            avatarURL: RFC_3986.URI,
+            avatarURL: IETF.RFC.`3986`.URI,
             gravatarID: String,
-            url: RFC_3986.URI,
-            htmlURL: RFC_3986.URI,
+            url: IETF.RFC.`3986`.URI,
+            htmlURL: IETF.RFC.`3986`.URI,
             type: String,
             siteAdmin: Bool
         ) {

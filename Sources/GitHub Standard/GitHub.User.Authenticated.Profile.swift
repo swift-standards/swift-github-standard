@@ -8,7 +8,7 @@ extension GitHub.User.Authenticated {
         public let login: GitHub.User.Login
         public let name: String?
         public let email: EmailAddress?
-        public let avatarURL: RFC_3986.URI
+        public let avatarURL: IETF.RFC.`3986`.URI
         public let bio: String?
         public let company: String?
         public let blog: String?
@@ -17,15 +17,15 @@ extension GitHub.User.Authenticated {
         public let publicGists: UInt64
         public let followers: UInt64
         public let following: UInt64
-        public let createdAt: RFC_3339.DateTime
-        public let updatedAt: RFC_3339.DateTime
+        public let createdAt: IETF.RFC.`3339`.DateTime
+        public let updatedAt: IETF.RFC.`3339`.DateTime
 
         public init(
             id: GitHub.User.ID,
             login: GitHub.User.Login,
             name: String?,
             email: EmailAddress?,
-            avatarURL: RFC_3986.URI,
+            avatarURL: IETF.RFC.`3986`.URI,
             bio: String?,
             company: String?,
             blog: String?,
@@ -34,8 +34,8 @@ extension GitHub.User.Authenticated {
             publicGists: UInt64,
             followers: UInt64,
             following: UInt64,
-            createdAt: RFC_3339.DateTime,
-            updatedAt: RFC_3339.DateTime
+            createdAt: IETF.RFC.`3339`.DateTime,
+            updatedAt: IETF.RFC.`3339`.DateTime
         ) {
             self.id = id
             self.login = login

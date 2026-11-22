@@ -5,14 +5,14 @@ extension GitHub.Repository {
         public let key: String
         public let name: String
         public let spdxID: String
-        public let url: RFC_3986.URI?
+        public let url: IETF.RFC.`3986`.URI?
         public let nodeID: String
 
         public init(
             key: String,
             name: String,
             spdxID: String,
-            url: RFC_3986.URI?,
+            url: IETF.RFC.`3986`.URI?,
             nodeID: String
         ) {
             self.key = key

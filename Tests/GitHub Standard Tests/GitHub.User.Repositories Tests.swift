@@ -13,8 +13,8 @@ extension `GitHub.User.Repositories Tests` {
     @Suite("`GitHub.User.Repositories Tests`.Unit")
     struct Unit {
         @Test
-        func `Authenticated-user repository filters retain provider wire values`() throws(RFC_3339.DateTime.Error) {
-            let since = try RFC_3339.DateTime("2026-07-01T00:00:00Z")
+        func `Authenticated-user repository filters retain provider wire values`() throws(IETF.RFC.`3339`.DateTime.Error) {
+            let since = try IETF.RFC.`3339`.DateTime("2026-07-01T00:00:00Z")
             let request = Request(
                 visibility: .private,
                 affiliation: "owner,collaborator",

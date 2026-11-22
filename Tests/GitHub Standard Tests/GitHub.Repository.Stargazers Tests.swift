@@ -16,21 +16,21 @@ extension `GitHub.Repository.Stargazers Tests` {
     @Suite("`GitHub.Repository.Stargazers Tests`.Unit")
     struct Unit {
         @Test
-        func `Stargazers preserve login and starred-at wire semantics`() throws(RFC_3986.Error) {
+        func `Stargazers preserve login and starred-at wire semantics`() throws(IETF.RFC.`3986`.Error) {
             let user = GitHub.User.Summary(
                 id: .init(42),
                 login: .init("octocat"),
                 nodeID: "MDQ6VXNlcjE=",
-                avatarURL: try RFC_3986.URI("https://avatars.githubusercontent.com/u/1"),
+                avatarURL: try IETF.RFC.`3986`.URI("https://avatars.githubusercontent.com/u/1"),
                 gravatarID: "",
-                url: try RFC_3986.URI("https://api.github.com/users/octocat"),
-                htmlURL: try RFC_3986.URI("https://github.com/octocat"),
+                url: try IETF.RFC.`3986`.URI("https://api.github.com/users/octocat"),
+                htmlURL: try IETF.RFC.`3986`.URI("https://github.com/octocat"),
                 type: "User",
                 siteAdmin: false
             )
-            let starredAt: RFC_3339.DateTime
-            do throws(RFC_3339.DateTime.Error) {
-                starredAt = try RFC_3339.DateTime("2026-07-22T10:00:00Z")
+            let starredAt: IETF.RFC.`3339`.DateTime
+            do throws(IETF.RFC.`3339`.DateTime.Error) {
+                starredAt = try IETF.RFC.`3339`.DateTime("2026-07-22T10:00:00Z")
             } catch {
                 Issue.record("invalid RFC 3339 fixture: \(error)")
                 return

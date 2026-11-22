@@ -5,13 +5,13 @@ extension GitHub.OAuth.Token.Exchange {
         public let clientID: String
         public let clientSecret: String
         public let code: String
-        public let redirectURI: RFC_3986.URI?
+        public let redirectURI: IETF.RFC.`3986`.URI?
 
         public init(
             clientID: String,
             clientSecret: String,
             code: String,
-            redirectURI: RFC_3986.URI? = nil
+            redirectURI: IETF.RFC.`3986`.URI? = nil
         ) {
             self.clientID = clientID
             self.clientSecret = clientSecret

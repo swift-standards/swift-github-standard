@@ -8,9 +8,9 @@ extension GitHub.Repository {
         public let name: Name
         public let fullName: String
         public let owner: GitHub.Owner.Summary
-        public let htmlURL: RFC_3986.URI
-        public let url: RFC_3986.URI
-        public let homepage: RFC_3986.URI?
+        public let htmlURL: IETF.RFC.`3986`.URI
+        public let url: IETF.RFC.`3986`.URI
+        public let homepage: IETF.RFC.`3986`.URI?
         public let description: String?
         public let isPrivate: Bool
         public let isFork: Bool
@@ -35,9 +35,9 @@ extension GitHub.Repository {
         public let openIssuesCount: UInt64
         public let watchersCount: UInt64
         public let size: UInt64
-        public let createdAt: RFC_3339.DateTime
-        public let updatedAt: RFC_3339.DateTime
-        public let pushedAt: RFC_3339.DateTime?
+        public let createdAt: IETF.RFC.`3339`.DateTime
+        public let updatedAt: IETF.RFC.`3339`.DateTime
+        public let pushedAt: IETF.RFC.`3339`.DateTime?
 
         public init(
             id: ID,
@@ -45,9 +45,9 @@ extension GitHub.Repository {
             name: Name,
             fullName: String,
             owner: GitHub.Owner.Summary,
-            htmlURL: RFC_3986.URI,
-            url: RFC_3986.URI,
-            homepage: RFC_3986.URI?,
+            htmlURL: IETF.RFC.`3986`.URI,
+            url: IETF.RFC.`3986`.URI,
+            homepage: IETF.RFC.`3986`.URI?,
             description: String?,
             isPrivate: Bool,
             isFork: Bool,
@@ -72,9 +72,9 @@ extension GitHub.Repository {
             openIssuesCount: UInt64,
             watchersCount: UInt64,
             size: UInt64,
-            createdAt: RFC_3339.DateTime,
-            updatedAt: RFC_3339.DateTime,
-            pushedAt: RFC_3339.DateTime?
+            createdAt: IETF.RFC.`3339`.DateTime,
+            updatedAt: IETF.RFC.`3339`.DateTime,
+            pushedAt: IETF.RFC.`3339`.DateTime?
         ) {
             self.id = id
             self.nodeID = nodeID

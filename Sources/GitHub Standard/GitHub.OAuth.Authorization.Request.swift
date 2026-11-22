@@ -3,13 +3,13 @@ public import RFC_3986
 extension GitHub.OAuth.Authorization {
     public struct Request: Equatable, Hashable, Sendable {
         public let clientID: String
-        public let redirectURI: RFC_3986.URI
+        public let redirectURI: IETF.RFC.`3986`.URI
         public let scopes: [String]
         public let state: String
 
         public init(
             clientID: String,
-            redirectURI: RFC_3986.URI,
+            redirectURI: IETF.RFC.`3986`.URI,
             scopes: [String],
             state: String
         ) {

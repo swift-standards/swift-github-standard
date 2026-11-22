@@ -17,12 +17,12 @@ extension `GitHub.User.Authenticated Tests` {
     @Suite("`GitHub.User.Authenticated Tests`.Unit")
     struct Unit {
         @Test
-        func `Profile preserves typed provider values and nullable email`() throws(RFC_3339.DateTime.Error) {
-            let createdAt = try RFC_3339.DateTime("2020-01-01T00:00:00Z")
-            let updatedAt = try RFC_3339.DateTime("2026-07-22T00:00:00Z")
-            let avatarURL: RFC_3986.URI
-            do throws(RFC_3986.Error) {
-                avatarURL = try RFC_3986.URI("https://avatars.githubusercontent.com/u/1")
+        func `Profile preserves typed provider values and nullable email`() throws(IETF.RFC.`3339`.DateTime.Error) {
+            let createdAt = try IETF.RFC.`3339`.DateTime("2020-01-01T00:00:00Z")
+            let updatedAt = try IETF.RFC.`3339`.DateTime("2026-07-22T00:00:00Z")
+            let avatarURL: IETF.RFC.`3986`.URI
+            do throws(IETF.RFC.`3986`.Error) {
+                avatarURL = try IETF.RFC.`3986`.URI("https://avatars.githubusercontent.com/u/1")
             } catch {
                 Issue.record("invalid RFC 3986 fixture: \(error)")
                 return
@@ -53,7 +53,7 @@ extension `GitHub.User.Authenticated Tests` {
 
         @Test
         func `Email list requires a typed non-null email address`() throws {
-            let email = EmailAddress(rfc6531: try RFC_6531.Mailbox("octocat@github.com"))
+            let email = EmailAddress(rfc6531: try IETF.RFC.`6531`.Mailbox("octocat@github.com"))
             let item = Emails.List.Email(
                 email: email,
                 primary: true,
