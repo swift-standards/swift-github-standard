@@ -24,7 +24,7 @@ extension GitHub.Repository {
         public let hasPages: Bool
         public let allowForking: Bool
         // swift-linter:disable:next raw concept
-        // REASON: GitHub's language is a programming-language name such as Swift, not a human language, so RFC_5646.LanguageTag is wrong and no type here owns it
+        // REASON: GitHub's language is a programming-language name such as Swift, not a human language, so IETF.RFC.`5646`.Tag is wrong and no type here owns it
         public let language: String?
         public let visibility: Visibility
         public let defaultBranch: String
@@ -61,7 +61,7 @@ extension GitHub.Repository {
             hasPages: Bool,
             allowForking: Bool,
             // swift-linter:disable:next raw concept
-            // REASON: GitHub's language is a programming-language name such as Swift, not a human language, so RFC_5646.LanguageTag is wrong and no type here owns it
+            // REASON: GitHub's language is a programming-language name such as Swift, not a human language, so IETF.RFC.`5646`.Tag is wrong and no type here owns it
             language: String?,
             visibility: Visibility,
             defaultBranch: String,
