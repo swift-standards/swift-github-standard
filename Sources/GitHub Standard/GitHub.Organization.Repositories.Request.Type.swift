@@ -8,3 +8,7 @@ extension GitHub.Organization.Repositories.Request {
         case member
     }
 }
+
+extension GitHub.Organization.Repositories.Request.`Type`: CustomStringConvertible {
+    public var description: String { self.rawValue }
+}

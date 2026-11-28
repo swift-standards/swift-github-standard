@@ -33,6 +33,14 @@ extension `GitHub.Organization.Repositories Tests` {
         }
 
         @Test
+        func `Page values and the request type read as the text of their query parameter`() {
+            #expect(GitHub.Page.Number.first.description == "1")
+            #expect(GitHub.Page.Size.maximum.description == "100")
+            let type: GitHub.Organization.Repositories.Request.`Type` = .sources
+            #expect(type.description == "sources")
+        }
+
+        @Test
         func `The response preserves repository identity and public state`() {
             let repository = GitHub.Repository.Summary(
                 id: .init(42),

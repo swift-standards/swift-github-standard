@@ -17,3 +17,7 @@ extension GitHub.Page {
 extension GitHub.Page.Number {
     public static let first = Self(validated: 1)
 }
+
+extension GitHub.Page.Number: CustomStringConvertible {
+    public var description: String { "\(self.rawValue)" }
+}

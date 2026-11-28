@@ -17,3 +17,7 @@ extension GitHub.Page {
 extension GitHub.Page.Size {
     public static let maximum = Self(validated: 100)
 }
+
+extension GitHub.Page.Size: CustomStringConvertible {
+    public var description: String { "\(self.rawValue)" }
+}
